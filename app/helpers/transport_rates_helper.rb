@@ -1,0 +1,2 @@
+module TransportRatesHelper
+end

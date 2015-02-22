@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :transport_rates
+
   resources :lists
 
   get 'welcome/index'

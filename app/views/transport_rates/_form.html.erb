@@ -1,0 +1,30 @@
+<%= form_for(@transport_rate) do |f| %>
+  <% if @transport_rate.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@transport_rate.errors.count, "error") %> prohibited this transport_rate from being saved:</h2>
+
+      <ul>
+      <% @transport_rate.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :list_id %><br>
+    <%= f.select :list_id, List.all.map{|l| [l.name, l.id]} %>
+  </div>
+  <div class="field">
+    <%= f.label :comunne_id %><br>
+    <%= f.select :comunne_id, Comunne.all.map{|c| [c.name, c.id]}%>
+  </div>
+  <div class="field">
+    <%= f.label :price %><br>
+    <%= f.number_field :price %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+

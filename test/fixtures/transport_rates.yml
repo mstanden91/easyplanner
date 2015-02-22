@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  list_id: 
+  comunne_id: 
+  price: 1
+
+two:
+  list_id: 
+  comunne_id: 
+  price: 1

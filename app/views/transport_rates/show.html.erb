@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>List:</strong>
+  <%= @transport_rate.list.name %>
+</p>
+
+<p>
+  <strong>Comunne:</strong>
+  <%= @transport_rate.comunne.name %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @transport_rate.price %>
+</p>
+
+<%= link_to 'Edit', edit_transport_rate_path(@transport_rate) %> |
+<%= link_to 'Back', transport_rates_path %>

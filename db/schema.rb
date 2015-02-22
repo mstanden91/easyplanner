@@ -11,12 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150221222807) do
+ActiveRecord::Schema.define(version: 20150222162155) do
 
   create_table "comunnes", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "lists", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "transport_rates", force: :cascade do |t|
+    t.integer  "list_id"
+    t.integer  "comunne_id"
+    t.integer  "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "transport_rates", ["comunne_id"], name: "index_transport_rates_on_comunne_id"
+  add_index "transport_rates", ["list_id"], name: "index_transport_rates_on_list_id"
 
 end
