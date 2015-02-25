@@ -26,7 +26,7 @@
            
       <div class="field" type="text" class="form-control", id="tipo-producto" style="display: none">
         <%= f.label :Tipo %><br>
-        <%= f.select :kind, options_for_select([['Se arrienda' , 'Arriendo'],['Es un servicio' ,'Servicio' ],['Se vende' , 'Venta']]), {}, class: "form-control" %>
+        <%= f.select :kind, options_for_select([['Se venden productos' , 'Venta'],['Es un servicio' ,'Servicio' ],['Se venden productos y se ofrece el servicio' , 'Venta/Servicio']]), {}, class: "form-control" %>
       </div>
 
 
@@ -47,12 +47,12 @@
 
     <div class="field" class="menuform">
       <%= f.label :'Precio Base (Precio al cual se le suman costos por traslado o adicionales)' %><br>
-      <%= f.number_field :base_price, class: "form-control" %>
+      <%= f.number_field :base_price,  class: "form-control" %>
     </div>
 
     <div class="field" type="text" class="form-control" >
       <%= f.label :Descripción %><br>
-      <%= f.text_field :description, class: "form-control" %>
+      <%= f.text_field :description, size: "60x30", class: "form-control" %>
     </div>
 
   </div>
@@ -71,7 +71,7 @@
 
   </div>
 
-  <div  class="panel panel-info" class="tiempoevento" class="menuform">
+  <div  class="panel panel-info" class="tiempoevento" class="menuform" id="tiempos-producto" >
     <div class="panel-heading">Tiempos del servicio o del arriendo</div>
 
     <div class="field">
@@ -112,13 +112,13 @@
 </div>
 
 <div class="panel panel-info" class="despacho" class="menuform">
- <div class="panel-heading">Panel heading without title</div> 
+ <div class="panel-heading"> Comunas en las que se realizan traslados y sus costos asociados</div> 
 
- <div class="field">
+ <div class="field" id="despacho-producto" style="display: none">
   <%= f.label :'En cuanto la obtención del producto: ' %><br>
-  <%= f.select :option_transport, options_for_select([['Solo con Retiro en domicilio o local' , 'Retiro'],['Con despacho/traslado a domicilio' ,'Despacho' ],['Con despacho o retiro' , 'Despacho/Retiro']]), {}, class: "form-control" %>
+  <%= f.select :option_transport, options_for_select([['Solo con Retiro en local' , 'Retiro'],['Con despacho a domicilio' ,'Despacho' ],['Con despacho o retiro' , 'Despacho/Retiro']]), {}, class: "form-control" %>
 </div>
-<div class="field">
+<div class="field" id="lista-producto" style="display: none">
   <%= f.label :'Seleccione una tabla creada con las comunas a las que llega y sus costos adicionales asociados' %><br>
   <%= f.select :list_id, @lists.map{|l| [l.name, l.id]}, {}, class: "form-control"  %>
 </div>
@@ -153,7 +153,7 @@
  $(function () {
   $("#product_category_id").change(function(event) {
     var categoria = this.value;
-     if (categoria == 2){
+     if (categoria == 5 || categoria == 6 ){
       $("#tipo-producto").slideDown(500);
     }
     else{
@@ -162,5 +162,51 @@
   });
 
  });
+ </script>
 
+  <script>
+ $(function () {
+  $("#product_category_id").change(function(event) {
+    var categoria = this.value;
+     if (categoria == 5 || categoria == 6 ){
+      $("#despacho-producto").slideDown(500);
+    }
+    else{
+      $("#despacho-producto").slideUp(500);
+    }
+  });
+
+ });
+ </script>
+
+  <script>
+ $(function () {
+  $("#product_category_id").change(function(event) {
+    var categoria = this.value;
+     if (categoria == 5 || categoria == 6 ){
+      $("#tiempos-producto").slideUp(500);
+    }
+    else{
+      $("#tiempos-producto").slideDown(500);
+    }
+  });
+
+ });
+ </script>
+<!-- 
+Sobre elementos que no son categorías -->
+
+ <script>
+ $(function () {
+  $("#product_option_transport").change(function(event) {
+    var opcion = this.value;
+     if (opcion == 'Retiro'){
+      $("#lista-producto").slideUp(500);
+    }
+    else{
+      $("#lista-producto").slideDown(500);
+    }
+  });
+
+ });
  </script>
