@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
-  resources :transport_rates
+  devise_for :users
+  
+  resources :users do 
+    resources :products do 
+     resources :additionals, except: [:show, :index]
+    end
+  end
 
+  resources :transport_rates
   resources :lists
 
   get 'welcome/index'

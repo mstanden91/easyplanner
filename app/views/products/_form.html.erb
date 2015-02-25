@@ -1,0 +1,157 @@
+<%= form_for [current_user, @product] do |f| %>
+<% if @product.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+  <ul>
+    <% @product.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<div class="row">
+  <div class="col-md-7">
+    <div class="col-md-offset-1">
+
+      <div class="panel panel-info" class="categorias" class="menuform">
+       <div class="panel-heading">Categorías del producto o servicio que ofrecerá</div>
+
+
+       <div class="field" type="text" class="form-control" >
+        <%= f.label :Categoría %><br>
+        <%= f.select :category_id, Category.all.map{|c| [c.name, c.id]}, {}, class: "form-control" %>
+      </div>
+           
+      <div class="field" type="text" class="form-control", id="tipo-producto"style="display: none">
+        <%= f.label :Tipo %><br>
+        <%= f.select :kind, options_for_select([['Se arrienda' , 'Arriendo'],['Es un servicio' ,'Servicio' ],['Se vende' , 'Venta']]), {}, class: "form-control" %>
+      </div>
+
+
+      <script>
+       $('‪#‎product_category_id').on("change", function(){
+        var categoria = this.value();
+        alert(categoria);
+      })
+    </script>
+
+  </div> 
+
+  <div class="panel panel-info" class="general" class="menuform">
+    <div class="panel-heading">Información General</div>
+
+    <div class="field" type="text" class="form-control" >
+      <%= f.label :Nombre %><br>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+
+    <div class="field" type="text" class="form-control" >
+      <%= f.label :Foto %><br>
+      <%= f.text_field :photo, class: "form-control" %>
+    </div>
+
+    <div class="field" class="menuform">
+      <%= f.label :'Precio Base (Precio al cual se le suman costos por traslado o adicionales)' %><br>
+      <%= f.number_field :base_price, class: "form-control" %>
+    </div>
+
+    <div class="field" type="text" class="form-control" >
+      <%= f.label :Descripción %><br>
+      <%= f.text_field :description, class: "form-control" %>
+    </div>
+
+  </div>
+
+  <div  class="panel panel-info" class = "edades" class="menuform">
+    <div class="panel-heading">Edad adecuada para el producto o servicio</div>
+
+    <div class="field">
+      <%= f.label :'Desde los' %><br>
+      <%= f.select :age_range_from, Agerange.all.map{|a| [a.name]}, {}, class: "form-control" %>
+    </div>
+    <div class="field">
+      <%= f.label :'Hasta la edad de' %><br>
+      <%= f.select :age_range_to, Agerange.all.map{|a| [a.name]}, {}, class: "form-control"  %>
+    </div>
+
+  </div>
+
+  <div  class="panel panel-info" class="tiempoevento" class="menuform">
+    <div class="panel-heading">Tiempos del servicio o del arriendo</div>
+
+    <div class="field">
+     <%= f.label :'Duración del arriendo o servicio' %><br>
+     <%= f.select :timeservice_id, Timeservice.all.map{|t| [t.name, t.id]}, {}, class: "form-control" %>
+   </div>
+   <div class="field">
+     <%= f.label :'Opciones de tiempo adicional' %><br>
+     <%= f.select :options_extra_time, options_for_select([['No hay posibilidades de tiempo adicional' , 'NoExtraTime'],['Si puede extenderse, pero tiene un costo adicional' ,'SiExtraTime' ]]), {}, class: "form-control" %> 
+   </div>
+   <div class="field">
+     <%= f.label :'Explique como cobra el tiempo adicional y en que casos se aplica' %><br>
+     <%= f.text_area :description_extra_time, class: "form-control" %>
+   </div>
+ </div>
+
+ <div class="panel panel-info" class="capacidad" class="menuform">
+  <div class="panel-heading">Capacidad de niños por producto o servicio</div>
+
+  <div class="field">
+   <%= f.label :'Capacidad máxima de niños' %><br>
+   <%= f.select :maxcapacity_id, Maxcapacity.all.map{|m| [m.name, m.id]}, {}, class: "form-control"  %>  
+ </div>
+ <div class="field">
+   <%= f.label :'En cuanto a niños adicionales' %><br>
+   <%= f.select :options_extra_kid_string, options_for_select([['
+    No se admiten niños adicionales' , 'NoExtraKid'],['Los niños adicionales tienen un costo extra' ,'SiExtraKid' ],['Se pueden incluir más niños sin costo' , 'SiExtraKidNoCost']]), {}, class: "form-control" %>
+  </div>
+  <div class="field">
+   <%= f.label :'El costo por niño extra es: ' %><br>
+   <%= f.number_field :cost_extra_kid, class: "form-control" %>
+ </div>
+ <div class="field">
+   <%= f.label :'El máximo de niños adicionales es: ' %><br>
+   <%= f.number_field :max_extra_kid, class: "form-control" %>
+ </div>
+
+</div>
+
+<div class="panel panel-info" class="despacho" class="menuform">
+ <div class="panel-heading">Panel heading without title</div> 
+
+ <div class="field">
+  <%= f.label :'En cuanto la obtención del producto: ' %><br>
+  <%= f.select :option_transport, options_for_select([['Solo con Retiro en domicilio o local' , 'Retiro'],['Con despacho/traslado a domicilio' ,'Despacho' ],['Con despacho o retiro' , 'Despacho/Retiro']]), {}, class: "form-control" %>
+</div>
+<div class="field">
+  <%= f.label :'Seleccione una tabla creada con las comunas a las que llega y sus costos adicionales asociados' %><br>
+  <%= f.select :list_id, @lists.map{|l| [l.name, l.id]}, {}, class: "form-control"  %>
+</div>
+
+</div>
+
+<div class="panel panel-info" class="adicionales" class="menuform">
+ <div class="panel-heading">Opciones adicionales al mismo producto o servicios</div>
+
+ <div class="field">
+  <%= f.label :'¿Existen adicionales que pueden aumentar su precio? ' %><br>
+  <%= f.select :options_additional, options_for_select([['
+   Si' , 'Si'],['No' ,'No' ]]), {}, class: "form-control" %>
+ 
+   <!-- Llamar a la tabla adicionales desde aca y poder crear adicionales  -->
+ </div>
+
+
+</div>
+
+<div class="actions">
+ <%= f.submit %>
+</div>
+
+</div>
+</div>
+</div>
+
+<% end %>

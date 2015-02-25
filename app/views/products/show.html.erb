@@ -1,0 +1,108 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Foto:</strong>
+  <%= image_tag(@product.photo) %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <% if  @product.category_id != nil %>
+          <%=  Category.find(@product.category_id).name %>
+          <% else %>
+          <%= @product.category_id %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Kind:</strong>
+  <%= @product.kind %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @product.name %>
+</p>
+
+<p>
+  <strong>Age range from:</strong>
+  <%= @product.age_range_from %>
+</p>
+
+<p>
+  <strong>Age range to:</strong>
+  <%= @product.age_range_to %>
+</p>
+
+<p>
+  <strong>Time service:</strong>
+  <% if  @product.timeservice_id != nil %>
+              <%=  Timeservice.find(@product.timeservice_id).name %>
+            <% else %>
+            <%= @product.timeservice_id %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Maxcapacity:</strong>
+  <% if  @product.maxcapacity_id != nil %>
+              <%=  Maxcapacity.find(@product.maxcapacity_id).name %>
+            <% else %>
+            <%= @product.maxcapacity_id %>
+  <% end %>
+
+</p>
+
+<p>
+  <strong>Base price:</strong>
+  <%= @product.base_price %>
+</p>
+
+<p>
+  <strong>Option transport:</strong>
+  <%= @product.option_transport %>
+</p>
+
+<p>
+  <strong>Lista asignada:</strong>
+    <% if @product.list_id != nil %>
+      <%=  List.find(@product.list_id).name %>
+    <% else %>
+      <%= @product.list_id %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Options extra time:</strong>
+  <%= @product.options_extra_time %>
+</p>
+
+<p>
+  <strong>Description extra time:</strong>
+  <%= @product.description_extra_time %>
+</p>
+
+<p>
+  <strong>Options extra kid string:</strong>
+  <%= @product.options_extra_kid_string %>
+</p>
+
+<p>
+  <strong>Cost extra kid:</strong>
+  <%= @product.cost_extra_kid %>
+</p>
+
+<p>
+  <strong>Max extra kid:</strong>
+  <%= @product.max_extra_kid %>
+</p>
+
+<p>
+  <strong>Options additional:</strong>
+  <%= @product.options_additional %>
+</p>
+
+
+
+<%= link_to 'Edit', edit_product_path(@product) %> |
+<%= link_to 'Back', products_path %>
