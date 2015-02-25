@@ -19,7 +19,7 @@
   <li role="presentation" class="active"><a href="http://localhost:3000">Inicio</a></li>
   <li role="presentation"><a href="http://localhost:3000/lists">Listas</a></li>
   <li role="presentation"><a href="http://localhost:3000/transport_rates">Listas y Comunas</a></li>
-  <li role="presentation"><a href="http://localhost:3000/products" >Productos</a></li>
+  <li role="presentation"><a href="<%= user_products_path(current_user)%>">Productos</a></li>
   <li role="presentation"><a href="http://localhost:3000/users/sign_in">Usuarios</a></li>
 
 </ul>
