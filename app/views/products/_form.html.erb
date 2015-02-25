@@ -48,7 +48,7 @@
 
     <div class="field" type="text" class="form-control" >
       <%= f.label :Descripción %><br>
-      <%= f.text_field :description, size: "60x30", class: "form-control" %>
+      <%= f.text_area :description,  size: "60x12", class: "form-control" %>
     </div>
 
   </div>
@@ -114,7 +114,7 @@
   <%= f.label :'En cuanto la obtención del producto: ' %><br>
   <%= f.select :option_transport, options_for_select([['Solo con Retiro en local' , 'Retiro'],['Con despacho a domicilio' ,'Despacho' ],['Con despacho o retiro' , 'Despacho/Retiro']]), {}, class: "form-control" %>
 </div>
-<div class="field" id="lista-producto" style="display: none">
+<div class="field" id="lista-producto">
   <%= f.label :'Seleccione una tabla creada con las comunas a las que llega y sus costos adicionales asociados' %><br>
   <%= f.select :list_id, @lists.map{|l| [l.name, l.id]}, {}, class: "form-control"  %>
 </div>
