@@ -24,13 +24,9 @@
         <%= f.select :category_id, Category.all.map{|c| [c.name, c.id]}, {}, class: "form-control" %>
       </div>
            
-      <div class="field" type="text" class="form-control", id="tipo-producto" style="display: none">
-        <%= f.label :Tipo %><br>
-        <%= f.select :kind, options_for_select([['Se venden productos' , 'Venta'],['Es un servicio' ,'Servicio' ],['Se venden productos y se ofrece el servicio' , 'Venta/Servicio']]), {}, class: "form-control" %>
-      </div>
-
-
+     
   </div> 
+
 
   <div class="panel panel-info" class="general" class="menuform">
     <div class="panel-heading">Información General</div>
@@ -149,20 +145,6 @@
 
 <% end %>
 
- <script>
- $(function () {
-  $("#product_category_id").change(function(event) {
-    var categoria = this.value;
-     if (categoria == 5 || categoria == 6 ){
-      $("#tipo-producto").slideDown(500);
-    }
-    else{
-      $("#tipo-producto").slideUp(500);
-    }
-  });
-
- });
- </script>
 
   <script>
  $(function () {
