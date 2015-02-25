@@ -67,7 +67,7 @@ class ProductsController < ApplicationController
   def destroy
     @product.destroy
     respond_to do |format|
-      format.html { redirect_to user_product_path(current_user, @product), notice: 'Product was successfully destroyed.' }
+      format.html { redirect_to user_products_path(current_user), notice: 'Product was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

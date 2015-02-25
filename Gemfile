@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'quiet_assets', group: :development
 # seguridad en las claves, para subir a amazon
 gem 'dotenv-rails', :groups => [:development, :test]
 gem 'carrierwave'

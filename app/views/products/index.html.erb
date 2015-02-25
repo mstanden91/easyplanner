@@ -80,7 +80,7 @@
 
         <td>
         <% if product.user_id != nil %>
-        <%= link_to 'Edit', edit_user_product_path(product.user, product) %>
+        <%= link_to 'Editar', edit_user_product_path(product.user, product) %>
         <% else %>
         <%= "no" %>
         <% end %>
@@ -88,7 +88,7 @@
 
         <td>
         <% if product.user_id != nil %>
-        <%= link_to 'Destroy', user_products_path(product.user, product), method: :delete, data: { confirm: 'Are you sure?' } %>
+        <%= link_to 'Eliminar', user_product_path(product.user, product), method: :delete, data: { confirm: '¿Seguro?' } %>
         <% else %>
         <%= "no" %>
         <% end %>
