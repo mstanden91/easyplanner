@@ -22,7 +22,6 @@ class ProductsController < ApplicationController
     @lists = List.all
     @timeservices = Timeservice.all
     @additionals = Additional.all
-
   end
 
   # GET /products/1/edit
@@ -40,7 +39,7 @@ class ProductsController < ApplicationController
        
     respond_to do |format|
       if @product.save
-        format.html { redirect_to @product, notice: 'Product was successfully created.' }
+        format.html { redirect_to user_product_path(current_user, @product), notice: 'Product was successfully created.' }
         format.json { render :show, status: :created, location: @product }
       else
         format.html { render :new }
@@ -54,7 +53,7 @@ class ProductsController < ApplicationController
   def update
     respond_to do |format|
       if @product.update(product_params)
-        format.html { redirect_to @product, notice: 'Product was successfully updated.' }
+        format.html { redirect_to user_product_path(current_user, @product), notice: 'Product was successfully updated.' }
         format.json { render :show, status: :ok, location: @product }
       else
         format.html { render :edit }
@@ -68,7 +67,7 @@ class ProductsController < ApplicationController
   def destroy
     @product.destroy
     respond_to do |format|
-      format.html { redirect_to user_products_url, notice: 'Product was successfully destroyed.' }
+      format.html { redirect_to user_product_path(current_user, @product), notice: 'Product was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
