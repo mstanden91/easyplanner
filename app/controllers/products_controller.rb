@@ -32,7 +32,7 @@ class ProductsController < ApplicationController
     @lists = List.all
     @timeservices = Timeservice.all
     @additionals = Additional.all
-    @additional = Additional.find(params[:additional_id])
+    
   end
 
   # POST /products
@@ -40,7 +40,9 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     @product.user_id = current_user.id
-       
+
+    if (@product.options_additional == "Si")
+
     respond_to do |format|
       if @product.save
         format.html { redirect_to user_product_path(current_user, @product), notice: 'Product was successfully created.' }
@@ -50,20 +52,47 @@ class ProductsController < ApplicationController
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
     end
+    
+    else 
+      respond_to do |format|
+      if @product.save
+        format.html { redirect_to user_products_path(current_user), notice: 'Product was successfully created.' }
+        format.json { render :index, status: :created, location: @product }
+      else
+        format.html { render :new }
+        format.json { render json: @product.errors, status: :unprocessable_entity }
+      end
+    end
+    
+
+    end
   end
 
   # PATCH/PUT /products/1
   # PATCH/PUT /products/1.json
   def update
-    respond_to do |format|
-      if @product.update(product_params)
-        format.html { redirect_to user_product_path(current_user, @product), notice: 'Product was successfully updated.' }
-        format.json { render :show, status: :ok, location: @product }
-      else
-        format.html { render :edit }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
+    if (@product.options_additional == "Si")
+        respond_to do |format|
+          if @product.update(product_params)
+            format.html { redirect_to user_product_path(current_user, @product), notice: 'Product was successfully updated.' }
+            format.json { render :show, status: :ok, location: @product }
+          else
+            format.html { render :edit }
+            format.json { render json: @product.errors, status: :unprocessable_entity }
+          end
+        end
+    else
+        respond_to do |format|
+          if @product.update(product_params)
+            format.html { redirect_to user_products_path(current_user), notice: 'Product was successfully updated.' }
+            format.json { render :index, status: :ok, location: @product }
+          else
+            format.html { render :edit }
+            format.json { render json: @product.errors, status: :unprocessable_entity }
+          end
+        end
       end
-    end
+
   end
 
   # DELETE /products/1

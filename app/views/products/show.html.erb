@@ -1,6 +1,85 @@
 <p id="notice"><%= notice %></p>
 
-<p>
+
+<%= link_to 'Editar Producto', edit_user_product_path(current_user, @product) %> 
+
+<!-- Formulario de adicionales -->
+
+<div id="adicionales">
+
+  <div class="row">
+    <div class="col-md-7">
+      <div class="col-md-offset-1"> 
+
+        <div class="panel panel-primary" class="categorias" class="menuform">
+         <div class="panel-heading">Opciones con costo adicional al producto</div>
+         <div class="col-md-offset-1">
+           <%= form_for([@user, @product, @additional]) do |f| %>
+           <% if @additional.errors.any? %>
+           <div id="error_explanation">
+              <h2><%= pluralize(@additional.errors.count, "error") %> prohibited this additional from being saved:</h2>
+
+              <ul>
+                <% @additional.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+                <% end %>
+              </ul>
+          </div>
+          <% end %>
+
+          <h5>Crear Adicional</h5>
+          <div class="field">
+            <%= f.label :name %><br>
+            <%= f.text_field :name %>
+          </div>
+          <div class="field">
+            <%= f.label :price %><br>
+            <%= f.number_field :price %>
+          </div>
+
+          <%= f.submit :value => "enviar" %>
+          <% end %>
+
+          <table class="table">
+            <caption>Adicionales para este producto</caption>
+            <thead>
+              <tr>
+                <th>Nombre de Adicional</th>
+                <th>Precio</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <% @additionals.each do |additional| %>
+                <td><%= additional.name %></td>
+                <td><%= additional.price %> </td>
+                <!-- <td><%= link_to 'Edit', edit_user_product_additional_path(current_user, additional.product_id, additional) %></td> -->
+                <td><%= link_to 'Eliminar Adicional',  user_product_additional_path(current_user, additional.product_id, additional), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                <br>
+                <% end %> 
+              </tr>
+            </tbody>
+          </table>
+        </div> 
+
+
+
+    </div>
+  </div>
+</div>
+
+<%= link_to 'Finalizar', user_products_path(current_user) %> 
+
+
+
+
+ 
+<!-- Formulario de adicionales -->
+
+
+
+
+<!-- <p>
   <strong>Foto:</strong>
   <%= image_tag(@product.photo) %>
 </p>
@@ -96,72 +175,5 @@
   <strong>Options additional:</strong>
   <%= @product.options_additional %>
 </p>
-<%= link_to 'Editar Producto', edit_user_product_path(current_user, @product) %>
-<!-- Formulario de adicionales -->
 
-
-<div class="row">
-  <div class="col-md-7">
-    <div class="col-md-offset-1"> 
-
-      <div class="panel panel-primary" class="categorias" class="menuform">
-       <div class="panel-heading">Opciones con costo adicional al producto</div>
-      <div class="col-md-offset-1">
-       <%= form_for([@user, @product, @additional]) do |f| %>
-       <% if @additional.errors.any? %>
-       <div id="error_explanation">
-        <h2><%= pluralize(@additional.errors.count, "error") %> prohibited this additional from being saved:</h2>
-
-        <ul>
-          <% @additional.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-          <% end %>
-        </ul>
-      </div>
-      <% end %>
-
-      <h5>Crear Adicional</h5>
-      <div class="field">
-        <%= f.label :name %><br>
-        <%= f.text_field :name %>
-      </div>
-      <div class="field">
-        <%= f.label :price %><br>
-        <%= f.number_field :price %>
-      </div>
-
-      <%= f.submit :value => "enviar" %>
-
-      <% end %>
-
-      
-      <table class="table">
-        <caption>Adicionales para este producto</caption>
-        <thead>
-          <tr>
-            <th>Nombre de Adicional</th>
-            <th>Precio</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <% @additionals.each do |additional| %>
-            <td><%= additional.name %></td>
-            <td><%= additional.price %> </td>
-            <!-- <td><%= link_to 'Edit', edit_user_product_additional_path(current_user, additional.product_id, additional) %></td> -->
-            <td><%= link_to 'Eliminar Adicional',  user_product_additional_path(current_user, additional.product_id, additional), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            <br>
-          </tr>
-        </tbody>
-      </table>
-      <% end %> 
-      </div> 
-
-
-    </div>
-  </div>
-</div>
-</div>
- |
-<%= link_to 'Volver a Productos', user_products_path(current_user) %>
 
