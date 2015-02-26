@@ -7,8 +7,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :transport_rates
-  resources :lists
+  resources :user do 
+    resources :lists, except: [:show] do
+    resources :transport_rates, except: [:show]
+  end
+end
 
   get 'welcome/index'
 
