@@ -1,4 +1,4 @@
-<%= form_for [current_user, product, @additional] do |f| %>
+<%= form_for [product, @additional] do |f| %>
   <% if @additional.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@additional.errors.count, "error") %> prohibited this additional from being saved:</h2>

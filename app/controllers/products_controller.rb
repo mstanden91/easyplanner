@@ -12,7 +12,10 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
-
+    @user = current_user
+    @additionals = @product.additionals.all
+    # Instancia de un nuevo adicional
+    @additional = Additional.new product: @product
   end
 
   # GET /products/new
@@ -29,6 +32,7 @@ class ProductsController < ApplicationController
     @lists = List.all
     @timeservices = Timeservice.all
     @additionals = Additional.all
+    @additional = Additional.find(params[:additional_id])
   end
 
   # POST /products

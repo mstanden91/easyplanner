@@ -19,22 +19,22 @@ class AdditionalsController < ApplicationController
 
   # GET /additionals/1/edit
   def edit
-  end
+    @product = Product.find(params[:product_id])
+    @additional = Additional.find(params[:additional_id])
+      
+
+   end
 
   # POST /additionals
   # POST /additionals.json
   def create
+   
+    @product = Product.find(params[:product_id])
     @additional = Additional.new(additional_params)
-
-    respond_to do |format|
-      if @additional.save
-        format.html { redirect_to @additional, notice: 'Additional was successfully created.' }
-        format.json { render :show, status: :created, location: @additional }
-      else
-        format.html { render :new }
-        format.json { render json: @additional.errors, status: :unprocessable_entity }
-      end
-    end
+    @additional.product = @product
+    @additional.save 
+    redirect_to user_product_url(current_user, @product)
+    
   end
 
   # PATCH/PUT /additionals/1
@@ -42,8 +42,8 @@ class AdditionalsController < ApplicationController
   def update
     respond_to do |format|
       if @additional.update(additional_params)
-        format.html { redirect_to @additional, notice: 'Additional was successfully updated.' }
-        format.json { render :show, status: :ok, location: @additional }
+        format.html { redirect_to user_product_url(current_user, @additional.product), notice: 'Additional was successfully updated.' }
+        format.json { render :show, status: :ok, location: @product }
       else
         format.html { render :edit }
         format.json { render json: @additional.errors, status: :unprocessable_entity }
@@ -54,11 +54,12 @@ class AdditionalsController < ApplicationController
   # DELETE /additionals/1
   # DELETE /additionals/1.json
   def destroy
-    @additional.destroy
+    
     respond_to do |format|
-      format.html { redirect_to additionals_url, notice: 'Additional was successfully destroyed.' }
+      format.html { redirect_to user_product_url(current_user, @additional.product), notice: 'Additional was successfully destroyed.' }
       format.json { head :no_content }
     end
+    @additional.destroy
   end
 
   private
