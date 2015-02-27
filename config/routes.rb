@@ -8,10 +8,14 @@ Rails.application.routes.draw do
   end
 
   resources :user do 
-    resources :lists, except: [:show] do
+    resources :lists do
     resources :transport_rates, except: [:show]
+    end
   end
-end
+ 
+
+
+
 
   get 'welcome/index'
 

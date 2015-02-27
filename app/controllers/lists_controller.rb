@@ -5,11 +5,17 @@ class ListsController < ApplicationController
   # GET /lists.json
   def index
     @lists = List.all
+    @transport_rates = TransportRate.all      
   end
 
   # GET /lists/1
   # GET /lists/1.json
   def show
+    @user = current_user
+    @transport_rates = @list.transport_rates
+    # Instancia de un nuevo transport_rate
+    @transport_rate = TransportRate.new list: @list
+       
   end
 
   # GET /lists/new

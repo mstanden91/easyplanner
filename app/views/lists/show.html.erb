@@ -1,10 +1,37 @@
- <div class="row">
+ <table class="table">
+ <thead>
+  <tr>
+    <th>Comuna</th>
+    <th>Lista Asociada</th>
+    <th>Precio traslado</th>
+    <th colspan="3"></th>
+  </tr>
+</thead>
+
+
+ <tbody>
+ <tr>
+ <% @transport_rates.each do |transport_rate| %>
+    <td><%= transport_rate.comunne.name %></td>
+    <td><%= transport_rate.list.name %> </td>
+    <td><%= transport_rate.price %> </td>
+                   <br>
+  </tr> 
+  <% end %>                 
+  </tbody>
+  </table>
+ 
+
+
+
+<p id="notice"><%= notice %></p>
+<div class="row">
           <div class="col-md-5">
           <div class="col-md-offset-1">
 
  <table class="table">
 
-<%= form_for [current_user, @tranport_rate] do |f| %>
+<%= form_for [current_user, @list, @transport_rate] do |f| %>
   <% if @transport_rate.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@transport_rate.errors.count, "error") %> prohibited this transport_rate from being saved:</h2>
@@ -17,10 +44,6 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :'Nombre de lista' %><br>
-    <%= f.select :list_id, List.all.map{|l| [l.name, l.id]} %>
-  </div>
   <div class="field">
     <%= f.label :'Seleccione una comuna en la que trabaje' %><br>
     <%= f.select :comunne_id, Comunne.all.map{|c| [c.name, c.id]}%>
