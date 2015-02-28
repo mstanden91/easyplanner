@@ -5,7 +5,8 @@ class ListsController < ApplicationController
   # GET /lists.json
   def index
     @lists = List.all
-    @transport_rates = TransportRate.all      
+    @transport_rates = TransportRate.all 
+    @list = List.new     
   end
 
   # GET /lists/1

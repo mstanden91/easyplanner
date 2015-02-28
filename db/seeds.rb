@@ -16,7 +16,7 @@ comunne.map{|b| Comunne.create(name: b.first)}
 Timeservice.delete_all
 
 timeservice = [
-['20 min'], ['25 min'], ['30 min'], ['35 min'], ['40 min'], ['45 min'], ['50 min'], ['55 min'], ['60 min'], ['1 hora'], ['1 hora y 10 min'], ['1 hora y 20 min'], ['1 hora y 30 min'], ['1 hora y 40 min'], ['1 hora y 50 min'], ['2 horas'], ['2 horas y 10 min'], ['2 horas y 20 min'], ['2 horas y 30 min'], ['2 horas y 40 min'], ['2 horas y 50 min'], ['3 horas'], ['3 horas y 10 min'], ['3 horas y 20 min'], ['3 horas y 30 min'], ['3 horas y 40 min'], ['3 horas y 50 min'], ['4 horas'], ['4 horas y 10 min'], ['4 horas y 20 min'], ['4 horas y 30 min'], ['4 horas y 40 min'], ['4 horas y 50 min'], ['5 horas'], ['5 horas y 10 min'], ['5 horas y 20 min'], ['5 horas y 30 min'], ['5 horas y 40 min'], ['5 horas y 50 min'], ['6 horas'], ['7 horas'], ['8 horas'], ['9 horas'], 
+['No aplica'],['20 min'], ['25 min'], ['30 min'], ['35 min'], ['40 min'], ['45 min'], ['50 min'], ['55 min'], ['60 min'], ['1 hora'], ['1 hora y 10 min'], ['1 hora y 20 min'], ['1 hora y 30 min'], ['1 hora y 40 min'], ['1 hora y 50 min'], ['2 horas'], ['2 horas y 10 min'], ['2 horas y 20 min'], ['2 horas y 30 min'], ['2 horas y 40 min'], ['2 horas y 50 min'], ['3 horas'], ['3 horas y 10 min'], ['3 horas y 20 min'], ['3 horas y 30 min'], ['3 horas y 40 min'], ['3 horas y 50 min'], ['4 horas'], ['4 horas y 10 min'], ['4 horas y 20 min'], ['4 horas y 30 min'], ['4 horas y 40 min'], ['4 horas y 50 min'], ['5 horas'], ['5 horas y 10 min'], ['5 horas y 20 min'], ['5 horas y 30 min'], ['5 horas y 40 min'], ['5 horas y 50 min'], ['6 horas'], ['7 horas'], ['8 horas'], ['9 horas'], 
 
 ]
 timeservice.map{|b| Timeservice.create(name: b.first)} 

@@ -1,0 +1,13 @@
+.producto,
+.adicionales {
+  display: inline-block;
+}
+
+.producto {
+  width: 70%;
+}
+
+.adicionales {
+  width: 28%
+}
+

@@ -1,6 +1,10 @@
+<div class ="container">
+ <div class="row">
+    <div class="product col-md-6 "><p>
+  
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Lists</h1>
+<h1>Listas de Comunas y Precios</h1>
 
 <table class="table">
   <thead>
@@ -15,8 +19,8 @@
       <tr>
         <td><%= list.name %></td>
         <td><%= link_to 'Edit', edit_user_list_path(list.user, list) %></td>
-         <td><%= link_to 'Show', user_list_path(list.user, list) %></td>
-        <td><%= link_to 'Destroy', user_list_path(list.user, list), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+         <td><%= link_to 'Comunas y Precios Asociados', user_list_path(list.user, list) %></td>
+        <td><%= link_to 'Eliminar', user_list_path(list.user, list), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -24,7 +28,39 @@
 
 <br>
 
-<%= link_to 'Nueva Lista', new_user_list_path(current_user) %>
+</div>
+</div>
+
+
+<div class= "container">
+<div class="row">
+    <div class="product col-md-4 "><p>
+  
+<%= form_for [current_user, @list] do |f| %>
+  <% if @list.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@list.errors.count, "error") %> prohibited this list from being saved:</h2>
+
+      <ul>
+      <% @list.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+</div>
+</
+
+</div>
 
 
 

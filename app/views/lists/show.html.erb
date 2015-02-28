@@ -1,65 +1,68 @@
- <table class="table">
- <thead>
-  <tr>
-    <th>Comuna</th>
-    <th>Lista Asociada</th>
-    <th>Precio traslado</th>
-    <th colspan="3"></th>
-  </tr>
-</thead>
+<div class="container">
+  <p id="notice"><%= notice %></p>
+  
+  <div class="row">
+    <div class="tarifa col-md-2">
+      <table class="table">
 
+        <%= form_for [current_user, @list, @transport_rate] do |f| %>
+            <% if @transport_rate.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@transport_rate.errors.count, "error") %> prohibited this transport_rate from being saved:</h2>
 
- <tbody>
- <tr>
- <% @transport_rates.each do |transport_rate| %>
-    <td><%= transport_rate.comunne.name %></td>
-    <td><%= transport_rate.list.name %> </td>
-    <td><%= transport_rate.price %> </td>
-                   <br>
-  </tr> 
-  <% end %>                 
-  </tbody>
-  </table>
- 
+              <ul>
+                <% @transport_rate.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+            <% end %>
 
+          <div class="field">
+            <%= f.label :'Seleccione una comuna en la que trabaje' %><br>
+            <%= f.select :comunne_id, (Comunne.all - @list.comunnes).map{|c| [c.name, c.id]}%>
+          </div>
+          <div class="field">
+            <%= f.label :'Cargo adicional por traslado' %><br>
+            <%= f.number_field :price  %>
+          </div>
 
-
-<p id="notice"><%= notice %></p>
-<div class="row">
-          <div class="col-md-5">
-          <div class="col-md-offset-1">
-
- <table class="table">
-
-<%= form_for [current_user, @list, @transport_rate] do |f| %>
-  <% if @transport_rate.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@transport_rate.errors.count, "error") %> prohibited this transport_rate from being saved:</h2>
-
-      <ul>
-      <% @transport_rate.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :'Seleccione una comuna en la que trabaje' %><br>
-    <%= f.select :comunne_id, Comunne.all.map{|c| [c.name, c.id]}%>
-  </div>
-
-  <div class="field">
-    <%= f.label :'Cargo adicional por traslado' %><br>
-    <%= f.number_field :price  %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
-  </table>
-
+          <div class="actions">
+            <%= f.submit %>
+          </div>
+        <% end %>
+      </table>
    
+    </div>
   </div>
-</div>
+
+  <div class="row">
+    <div class="resumen col-md-6">
+      <div class="panel panel-primary">
+         <div class="panel-heading">Comunas con las que se trabajan y precios de traslado | <%= @list.name %></div>
+           <div class="panel-body">
+              <table class="table">
+                <thead>
+                 <tr>
+                   <th>Comuna</th>
+                   <th>Precio traslado</th>|
+                   <th colspan="3"></th>
+                 </tr>
+               </thead>
+
+               <tbody>
+                <tr>
+                  <% @transport_rates.each do |transport_rate| %>
+                  <td><%= transport_rate.comunne.name %></td>
+                  <td><%= transport_rate.price %> </td>
+                  <td><%= link_to 'Destroy', user_list_transport_rate_path(current_user, transport_rate.list_id, transport_rate), method: :delete, data: { confirm: 'Are you sure?' } %></td>  
+                  <br>
+                </tr> 
+                <% end %>                 
+               </tbody>
+              </table>
+          </div>
+     </div>
+    </div>
+  </div>
 </div>

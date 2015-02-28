@@ -6,4 +6,5 @@ class User < ActiveRecord::Base
   has_many :products
   has_many :lists
   has_many :transport_rates, :through => :lists
+  has_many :comunnes, :through => :transport_rates
 end

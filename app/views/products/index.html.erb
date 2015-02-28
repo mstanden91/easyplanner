@@ -1,105 +1,83 @@
-
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Products</h1>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>Foto</th>
-      <th>Categoría</th>
-      <th>Nombre</th>
-      <th>Edad desde</th>
-      <th>Edad hasta  </th>
-      <th>Tiempo</th>
-      <th>Max capacidad</th>
-      <th>Precio B.</th>
-      <th>Modo despacho</th>
-      <th>Tarifario</th>
-      <th>Tiempo extra</th>
-      <th>Modo tiempo extra</th>
-      <th>Niño extra</th>
-      <th>Costo niño Extra</th>
-      <th>Max niño extra</th>
-      <th>Additionals</th>
-      <th>id</th>
-      
-
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @products.each do |product| %>
+<div class="container">
+  <p id="notice"><%= notice %></p>
+  
+  <h1>Productos de  <%= current_user.email %></h1>
+  
+  <table class="table">
+    <thead>
       <tr>
-         <td><%= image_tag(product.photo, size:"80") %></td>
-        <td><% if  product.category_id != nil %>
-              <%=  Category.find(product.category_id).name %>
-            <% else %>
-            <% product.category_id %>
-            <% end %>
-        <td><%= product.name %></td>
-        <td><%= product.age_range_from %></td>
-        <td><%= product.age_range_to %></td>
-        <td><% if  product.timeservice_id != nil %>
-              <%=  Timeservice.find(product.timeservice_id).name %>
-            
-            <% product.timeservice_id %>
-            <% end %>
-        </td>
-        <td><% if  product.maxcapacity_id != nil %>
-              <%=  Maxcapacity.find(product.maxcapacity_id).name %>
-            <% else %>
-            <% product.maxcapacity_id %>
-            <% end %>
-
-        <td><%= product.base_price %></td>
-        <td><%= product.option_transport %></td>
-        <td><% if  product.list_id != nil %>
-              <%=  List.find(product.list_id).name %>
-            <% else %>
-            <% product.list_id %>
-            <% end %>
-
-        <td><%= product.options_extra_time %></td>
-        <td><%= product.description_extra_time %></td>
-        <td><%= product.options_extra_kid_string %></td>
-        <td><%= product.cost_extra_kid %></td>
-        <td><%= product.max_extra_kid %></td>
-        <td><%= product.options_additional %></td>
-        <td><%= product.additionals.name %></td>
-        <td><%= product.user_id %></td>
-      
-        <td>
-       <% if product.user_id != nil %>
-        <%= link_to 'Show', user_product_path(product.user, product) %>
-        <% else %>
-        <%= "no" %>
+        <th>Foto</th>
+        <th>Categoría</th>
+        <th>Nombre</th>
+        <th>Tiempo</th>
+        <th>Max capacidad</th>
+        <th>Precio B.</th>
+        <th>Adicionales</th>
+        <th>id</th>
+        
+  
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+  
+    <tbody>
+      <% @products.each do |product| %>
+        <tr>
+           <td><%= image_tag(product.photo, size:"80") %></td>
+          <td><% if  product.category_id != nil %>
+                <%=  Category.find(product.category_id).name %>
+              <% else %>
+              <% product.category_id %>
+              <% end %>
+          <td><%= product.name %></td>
+          <td><% if  product.timeservice_id != nil %>
+                <%=  Timeservice.find(product.timeservice_id).name %>
+         
+              <% product.timeservice_id %>
+              <% end %>
+          </td>
+          <td><% if  product.maxcapacity_id != nil %>
+                <%=  Maxcapacity.find(product.maxcapacity_id).name %>
+              <% else %>
+              <% product.maxcapacity_id %>
+              <% end %>
+  
+          <td><%= product.base_price %></td>
+          <td><%= product.options_additional %></td> 
+           <td><%= product.user_id %></td>
+        
+          <td>
+         <% if product.user_id != nil %>
+          <%= link_to 'Show', user_product_path(product.user, product) %>
+          <% else %>
+          <%= "no" %>
+          <% end %>
+          </td>
+  
+          <td>
+          <% if product.user_id != nil %>
+          <%= link_to 'Editar', edit_user_product_path(product.user, product) %>
+          <% else %>
+          <%= "no" %>
+          <% end %>
+          </td>
+  
+          <td>
+          <% if product.user_id != nil %>
+          <%= link_to 'Eliminar', user_product_path(product.user, product), method: :delete, data: { confirm: '¿Seguro?' } %>
+          <% else %>
+          <%= "no" %>
+          <% end %>
+          </td>
+  
+  
+         
         <% end %>
-        </td>
+    </tbody>
+  </table>
+  
+  <br>
+  
+  <%= link_to 'New Product', new_user_product_path(current_user) %>
 
-        <td>
-        <% if product.user_id != nil %>
-        <%= link_to 'Editar', edit_user_product_path(product.user, product) %>
-        <% else %>
-        <%= "no" %>
-        <% end %>
-        </td>
-
-        <td>
-        <% if product.user_id != nil %>
-        <%= link_to 'Eliminar', user_product_path(product.user, product), method: :delete, data: { confirm: '¿Seguro?' } %>
-        <% else %>
-        <%= "no" %>
-        <% end %>
-        </td>
-
-
-       
-      <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Product', new_user_product_path(current_user) %>
+  </div>
