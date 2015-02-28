@@ -20,8 +20,10 @@
   <% if user_signed_in? %>
   <li role="presentation"><a href="<%= user_lists_path(current_user) %>">Listas</a></li>
   <li role="presentation"><a href="<%= user_products_path(current_user)%>">Productos</a></li>
+  <li role="presentation"><a href="<%= user_events_path(current_user)%>">Evento</a></li>
   <% end %>
   <li role="presentation"><a href="<%= users_path %>">Usuarios</a></li>
+
 
 </ul>
 

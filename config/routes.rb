@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :events
+
   devise_for :users
   
   resources :users do 
@@ -13,6 +15,11 @@ Rails.application.routes.draw do
     end
   end
  
+  resources :user do
+    resources :events do
+    end      
+  end
+
 
 
 

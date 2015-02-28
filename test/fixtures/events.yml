@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  namekid: MyString
+  comunne_id: 
+  date: 2015-02-28
+  timefrom: MyString
+  timeto: MyString
+  guestkid: 1
+  guestadult: 1
+  address: MyString
+  phone: MyString
+  agekidsfrom: MyString
+  agekidsfrom: MyString
+
+two:
+  namekid: MyString
+  comunne_id: 
+  date: 2015-02-28
+  timefrom: MyString
+  timeto: MyString
+  guestkid: 1
+  guestadult: 1
+  address: MyString
+  phone: MyString
+  agekidsfrom: MyString
+  agekidsfrom: MyString
