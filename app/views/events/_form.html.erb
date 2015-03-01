@@ -1,4 +1,6 @@
+<link rel="stylesheet" type="text/css" href="formulario.css">
 <%= form_for(@event) do |f| %>
+
   <% if @event.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
@@ -11,51 +13,58 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :namekid %><br>
-    <%= f.text_field :namekid %>
+  <div class="row">
+  <div class="col-md-7">
+    <div class="col-md-offset-1">
+
+       <div class="field" class="form-event">
+        <%= f.label :namekid %><br>
+        <%= f.text_field :namekid, class: "form-control" %>
+      </div>
+       <div class="field" class="form-event">
+        <%= f.label :comunne_id %><br>
+         <%= f.select :comunne_id, Comunne.all.map{|c| [c.name, c.id]}, :prompt => "Seleccione una comuna" %>
+      </div>
+       <div class="field" class="form-event">
+        <%= f.label :date %><br>
+        <%= f.date_select :date, min: Date.today %>
+      </div>
+       <div class="field" class="form-event">
+        <%= f.label :timefrom %><br>
+        <%= f.time_select :timefrom %>
+      </div>
+       <div class="field" class="form-event">
+        <%= f.label :timeto %><br>
+        <%= f.text_field :timeto, class: "form-control" %>
+      </div>
+       <div class="field" class="form-event">
+        <%= f.label :guestkid %><br>
+        <%= f.number_field :guestkid, min: 0, class: "form-control" %>
+      </div>
+       <div class="field" class="form-event">
+        <%= f.label :guestadult %><br>
+        <%= f.number_field :guestadult, min: 0, class: "form-control" %>
+      </div>
+       <div class="field" class="form-event">
+        <%= f.label :address %><br>
+        <%= f.text_field :address, class: "form-control" %>
+      </div>
+       <div class="field" class="form-event">
+        <%= f.label :phone %><br>
+        <%= f.telephone_field :phone, class: "form-control" %>
+      </div>
+       <div class="field" class="form-event">
+        <%= f.label :agekidsfrom %><br>
+        <%= f.select :agekidsfrom, Agerange.all.map{|a| [a.name]}, :prompt => "Desde los: "%>
+      </div>
+      <div class="field" class="form-event">
+        <%= f.label :agekidsto %><br>
+        <%= f.select :agekidsto, Agerange.all.map{|a| [a.name]}, :prompt => "Hasta los: "%>
+      </div>
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+     <% end %>
+   </div>
   </div>
-  <div class="field">
-    <%= f.label :comunne_id %><br>
-    <%= f.text_field :comunne_id %>
   </div>
-  <div class="field">
-    <%= f.label :date %><br>
-    <%= f.date_select :date %>
-  </div>
-  <div class="field">
-    <%= f.label :timefrom %><br>
-    <%= f.text_field :timefrom %>
-  </div>
-  <div class="field">
-    <%= f.label :timeto %><br>
-    <%= f.text_field :timeto %>
-  </div>
-  <div class="field">
-    <%= f.label :guestkid %><br>
-    <%= f.number_field :guestkid %>
-  </div>
-  <div class="field">
-    <%= f.label :guestadult %><br>
-    <%= f.number_field :guestadult %>
-  </div>
-  <div class="field">
-    <%= f.label :address %><br>
-    <%= f.text_field :address %>
-  </div>
-  <div class="field">
-    <%= f.label :phone %><br>
-    <%= f.text_field :phone %>
-  </div>
-  <div class="field">
-    <%= f.label :agekidsfrom %><br>
-    <%= f.text_field :agekidsfrom %>
-  </div>
-  <div class="field">
-    <%= f.label :agekidsfrom %><br>
-    <%= f.text_field :agekidsfrom %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>

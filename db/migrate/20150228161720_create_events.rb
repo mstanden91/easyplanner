@@ -11,8 +11,7 @@ class CreateEvents < ActiveRecord::Migration
       t.string :address
       t.string :phone
       t.string :agekidsfrom
-      t.string :agekidsfrom
-
+  
       t.timestamps null: false
     end
     add_foreign_key :events, :comunnes
