@@ -1,4 +1,3 @@
-<link rel="stylesheet" type="text/css" href="formulario.css">
 <%= form_for(@event) do |f| %>
 
   <% if @event.errors.any? %>
@@ -18,49 +17,93 @@
     <div class="col-md-offset-1">
 
        <div class="field" class="form-event">
-        <%= f.label :namekid %><br>
-        <%= f.text_field :namekid, class: "form-control" %>
+        <%= f.label :'Nombre de festejado o festejada' %><br>
+        <%= f.text_field :namekid, class: 'form-control', autofocus: true, placeholder: 'Ingrese el nombre del niño' %>
       </div>
        <div class="field" class="form-event">
-        <%= f.label :comunne_id %><br>
-         <%= f.select :comunne_id, Comunne.all.map{|c| [c.name, c.id]}, :prompt => "Seleccione una comuna" %>
-      </div>
+        <%= f.label :'Comuna en la que se realizará el cumpleaños' %><br>
+         <%= f.select :comunne_id, Comunne.all.map{|c| [c.name, c.id]}, { :prompt => "Selecciona una comuna" }, {:class => "form-control" } %>
+         <p class="help-block">Su búsqueda incluirá solo aquellos provedores que lleguen a su comuna y cotizará precio incluyendo traslado</p>
+        </div>
        <div class="field" class="form-event">
-        <%= f.label :date %><br>
-        <%= f.date_select :date, min: Date.today %>
+        <%= f.label :'Fecha en la que se celebrará el cumpleaños' %><br>
+        <%= f.text_field :date, min: Date.today, 'data-behaviour' => 'datepicker', placeholder: 'Ingrese fecha del cumpleaños'  %>
+        <p class="help-block"> Esta información será enviada a los provedores para que puedan confirmar su disponibilidad</p>
+
+          <script type="text/javascript">
+            $.fn.datepicker.defaults.format = "dd/mm/yyyy";
+            $('[data-behaviour~=datepicker]').datepicker()({
+              startDate: '+1d'
+               });
+          </script>
+
+          </div>
+
+      <div class="row">
+          <div class="col-md-6">
+               <div class="field" class="form-event" class="columna1" >
+              <%= f.label :'Hora de inicio de cumpleaños' %><br>
+              <%= f.time_select :timefrom %>
+               </div>
+          </div>
+          <div class="col-md-6">
+             <div class="field" class="form-event" class:"columna2" >
+              <%= f.label :'Hora de término' %><br>
+              <%= f.time_select :timeto, class: "form-control" %>
+              </div>
+          </div>
       </div>
+      
+      
+        <div class="row">
+          <div class="col-md-6">
+             <div class="field" class="form-event" class="columna1">
+              <%= f.label :'Cantidad de Invitados Niños' %><br>
+              <%= f.number_field :guestkid, min: 0, class: "form-control" %>
+              <p class="help-block">Se requiere para sugerir resultados a corde a la cantidad de niños</p>
+            </div>
+          </div>
+
+           <div class="col-md-6">
+             <div class="field" class="form-event" class:"columna2" >
+              <%= f.label :'Contidad de Invitados Adultos' %><br>
+              <%= f.number_field :guestadult, min: 0, class: "form-control" %>
+              <p class="help-block">Se requiere para estimar porciones de comida </p>
+            </div>
+          </div>
+
+        </div>
+
+
        <div class="field" class="form-event">
-        <%= f.label :timefrom %><br>
-        <%= f.time_select :timefrom %>
-      </div>
-       <div class="field" class="form-event">
-        <%= f.label :timeto %><br>
-        <%= f.text_field :timeto, class: "form-control" %>
-      </div>
-       <div class="field" class="form-event">
-        <%= f.label :guestkid %><br>
-        <%= f.number_field :guestkid, min: 0, class: "form-control" %>
-      </div>
-       <div class="field" class="form-event">
-        <%= f.label :guestadult %><br>
-        <%= f.number_field :guestadult, min: 0, class: "form-control" %>
-      </div>
-       <div class="field" class="form-event">
-        <%= f.label :address %><br>
+        <%= f.label :'Dirección precisa del cumpleaños' %><br>
         <%= f.text_field :address, class: "form-control" %>
+        <p class="help-block">Una vez realizada una compra, la dirección será enviada al proveedor para cumplir adecuadamente</p>
       </div>
        <div class="field" class="form-event">
-        <%= f.label :phone %><br>
+        <%= f.label :'Número de contacto' %><br>
         <%= f.telephone_field :phone, class: "form-control" %>
+        <p class="help-block"> Se requiere para que se le pueda contactar,  en caso de ser necesario </p>
       </div>
-       <div class="field" class="form-event">
-        <%= f.label :agekidsfrom %><br>
-        <%= f.select :agekidsfrom, Agerange.all.map{|a| [a.name]}, :prompt => "Desde los: "%>
-      </div>
-      <div class="field" class="form-event">
-        <%= f.label :agekidsto %><br>
-        <%= f.select :agekidsto, Agerange.all.map{|a| [a.name]}, :prompt => "Hasta los: "%>
-      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="field" class="form-event" class="columna1">
+        <%= f.label :'Los niños asistentes tienen entre:' %><br>
+        <%= f.select :agekidsfrom, Agerange.all.map{|a| [a.name]}, { :prompt => "Seleccione una edad " }, {:class => "form-control" }%>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="field" class="form-event" class:"columna2" >
+        <%= f.label :'Y hasta:' %><br>
+        <%= f.select :agekidsto, Agerange.all.map{|a| [a.name]}, { :prompt => "Seleccione una edad  " }, {:class => "form-control" }%>
+           </div>
+        </div>
+        <p class="help-block">El rango de edad de los niños invitados, permite hacer una mejor sugerencia de las entretenciones e informar al proveedor contratado </p>
+      </div>  
+
+
       <div class="actions">
         <%= f.submit %>
       </div>

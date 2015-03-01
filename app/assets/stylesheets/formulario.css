@@ -1,10 +1,27 @@
-.form-event {
-  background-color: red;
-  color: red;
-  text-align: center;
-  margin-bottom: 10px;
+.horahasta.
+.horadesde {
+   display: inline-block;
 }
 
-.row {
-
+.columna1 {
+ width: 100%;
 }
+
+.columna2 {
+  width: 100%;
+}
+
+.field {
+  border-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.div {
+  margin-bottom: 5px;
+}
+
+#text_field {
+  width: 100%;
+}
+
+
