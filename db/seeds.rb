@@ -6,6 +6,17 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+
+# 20.times do
+#   random_size = Random.rand(300)+300
+#   Product.create name: Faker::Lorem.words(Random.rand(3) + 1).join(' ').titleize,
+#   description: Faker::Lorem.paragraphs(3, true).join(' '),
+#   photo: "http://placecreature.com/#{random_size}/#{random_size}",
+#   comunne_id: 
+
+# end
+
+
 comunne = [
   
 ['Cerrillos '], ['Cerro Navia '], ['Conchalí '], ['El Bosque '], ['Estación Central '], ['Huechuraba '], ['Independencia '], ['La Cisterna '], ['La Florida '], ['La Pintana '], ['La Granja '], ['Padre Hurtado '], ['Pirque '], ['La Reina '], ['Las Condes '], ['Lo Barnechea '], ['Lo Espejo '], ['Lo Prado '], ['Macul '], ['Maipú '], ['Ñuñoa '], ['Pedro Aguirre Cerda '], ['Peñalolén '], ['Providencia '], ['Pudahuel'], ['Quilicura'], ['Quinta Normal'], ['Recoleta'], ['Renca'], ['San Miguel'], ['San Joaquín'], ['San Ramón'], ['Santiago'], ['Vitacura'], ['San Bernardo '], ['San José de Maipo'], ['Puente Alto'] 
