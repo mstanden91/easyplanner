@@ -5,17 +5,21 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     @events = Event.all
+    @categories = Category.all
   end
 
   # GET /events/1
   # GET /events/1.json
   def show
+    @categories = Category.all
   end
 
   # GET /events/new
   def new
+    @categories = Category.all
     @event = Event.new
   end
+
 
   # GET /events/1/edit
   def edit
@@ -24,7 +28,11 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
+    p event_params.to_json
     @event = Event.new(event_params)
+    @event.timefrom = event_params['timefrom(4i)'].to_s + ":" + event_params['timefrom(5i)'].to_s + " hrs"
+    @event.timeto = event_params['timeto(4i)'].to_s + ":" + event_params['timeto(5i)'].to_s + " hrs"
+    
 
     respond_to do |format|
       if @event.save
@@ -56,7 +64,7 @@ class EventsController < ApplicationController
   def destroy
     @event.destroy
     respond_to do |format|
-      format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
+      format.html { redirect_to user_events_path(current_user), notice: 'Event was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -72,3 +80,4 @@ class EventsController < ApplicationController
       params.require(:event).permit(:namekid, :comunne_id, :date, :timefrom, :timeto, :guestkid, :guestadult, :address, :phone, :agekidsfrom, :agekidsto)
     end
 end
+

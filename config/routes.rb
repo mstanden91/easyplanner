@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :events
+  get 'share/navbar'
+
+  #get 'catalog/index'
 
   devise_for :users
   
@@ -15,16 +17,13 @@ Rails.application.routes.draw do
     end
   end
  
-  resources :user do
+  resources :users do
     resources :events do
     end      
   end
 
-
-
-
-
   get 'welcome/index'
+  get 'catalog/:id' => 'catalog#index', as: :catalog
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
