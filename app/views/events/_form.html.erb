@@ -43,16 +43,18 @@
           <div class="col-md-6">
                <div class="field" class="form-event" class="columna1" >
               <%= f.label :'Hora de inicio de cumpleaños' %><br>
-              <%= f.time_select :timefrom %>
+              <%= f.time_select :timefrom, minute_step: 5 , start_hour: 8 %>
                </div>
           </div>
           <div class="col-md-6">
              <div class="field" class="form-event" class:"columna2" >
               <%= f.label :'Hora de término' %><br>
-              <%= f.time_select :timeto, class: "form-control" %>
+              <%= f.time_select :timeto, minute_step: 5, start_hour: 8 %>
               </div>
           </div>
       </div>
+
+
       
       
         <div class="row">

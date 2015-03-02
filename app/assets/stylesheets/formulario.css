@@ -1,5 +1,5 @@
-.horahasta.
-.horadesde {
+.columna1.
+.columna2 {
    display: inline-block;
 }
 
@@ -14,6 +14,7 @@
 .field {
   border-bottom: 20px;
   margin-bottom: 20px;
+  padding: 3px;
 }
 
 .div {
@@ -22,6 +23,12 @@
 
 #text_field {
   width: 100%;
+}
+
+.titulopaginas {
+  margin-bottom: 5px;
+  padding: 5px; 
+
 }
 
 
