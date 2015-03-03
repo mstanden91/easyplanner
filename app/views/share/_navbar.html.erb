@@ -20,7 +20,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Categorías <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
         <% @categories.each do |c| %>
-            <li><a href="<%= catalog_path(c.id) %>"> <%= c.name %> </a></li>
+            <li><a href="<%= catalog_path(category_id: c.id) %>"> <%= c.name %> </a></li>
             <% end %>
 
         

@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   end
 
   get 'welcome/index'
-  get 'catalog/:id' => 'catalog#index', as: :catalog
+  get 'catalog/' => 'catalog#index', as: :catalog
   get 'detail/:id' => 'welcome#detail', as: :detail
 
 
