@@ -1,4 +1,4 @@
-<%= form_for(@event) do |f| %>
+<%= form_for [current_user, @event] do |f| %>
 
   <% if @event.errors.any? %>
     <div id="error_explanation">
@@ -43,7 +43,7 @@
           <div class="col-md-6">
                <div class="field" class="form-event" class="columna1" >
               <%= f.label :'Hora de inicio de cumpleaños' %><br>
-              <%= f.time_select :timefrom, minute_step: 5 , start_hour: 8 %>
+              <%= f.time_select :timefrom, minute_step: 5 , start_hour: 8  %>
                </div>
           </div>
           <div class="col-md-6">

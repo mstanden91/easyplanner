@@ -5,8 +5,7 @@
         <h1>Eventos Creados </h1>
       </header><!-- /header -->
         
-     
-    
+      
     
     <table class="table">
       <thead>
@@ -35,7 +34,7 @@
             <td>
          
             </td>
-    
+            <td><%= link_to 'Buscar Proveedores', catalog_path(event.comunne_id)  %></td>
             <td><%= link_to 'Más Detalle', user_event_path(current_user, event) %></td>
             <td><%= link_to 'Editar', edit_user_event_path(current_user, event) %></td> 
             <td><%= link_to 'Eliminar', user_event_path(current_user, event), method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
@@ -49,3 +48,4 @@
   <%= link_to 'Crear nuevo cumpleaños', new_user_event_path(current_user) %>
 
   </div>
+ 
