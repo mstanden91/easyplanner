@@ -24,7 +24,8 @@ Rails.application.routes.draw do
 
   get 'welcome/index'
   get 'catalog/:id' => 'catalog#index', as: :catalog
-  get 'catalog/:id' => 'catalog#indexComunne', as: :catalogcomunne
+  get 'detail/:id' => 'welcome#detail', as: :detail
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
