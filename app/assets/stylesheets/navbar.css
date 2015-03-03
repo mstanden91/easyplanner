@@ -8,5 +8,6 @@
 .container-fluid
 .navbar-brand
  {
-  background-color: lightblue;
+  background-color: rgb(72, 122, 171);
+  border-radius:0px;
 }
