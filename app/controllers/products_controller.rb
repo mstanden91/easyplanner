@@ -39,6 +39,11 @@ class ProductsController < ApplicationController
   # POST /products.json
   def create
     @product = Product.new(product_params)
+    @additional = Additional.new
+    @lists = List.all
+    @timeservices = Timeservice.all
+    @additionals = Additional.all
+    
     @product.user_id = current_user.id
 
     if (@product.options_additional == "Si")

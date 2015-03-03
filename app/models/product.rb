@@ -8,4 +8,8 @@ class Product < ActiveRecord::Base
   has_many :additionals
   has_many :ageranges
   has_one :list
+
+  validates :timeservice_id, presence: true
+  validates :list_id, presence: true
+
 end
