@@ -1,0 +1,35 @@
+<div class="resumencumple">
+<div class="container">
+    <div class="row">
+      <div class="event col-md-6 "><p>
+  
+      <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading"> Cumpleaños de :<%= @event.namekid %> </div>
+  
+    <!-- List group -->
+    <ul class="list-group">
+      <p id="notice"><%= notice %></p>
+  
+          <li class="list-group-item"> Nombre: <%= @event.namekid %> </li>
+          <li class="list-group-item"> Comuna: <%= @event.comunne.name %> </li>
+          <li class="list-group-item"> Fecha de la celebración del cumpleaños:<%= @event.date %> </li>
+          <li class="list-group-item"> Hora inicio: <%= @event.timefrom %> </li>
+          <li class="list-group-item"> Hora término: <%= @event.timeto %> </li>
+          <li class="list-group-item"> Niños invitados: <%= @event.guestkid %> niños </li>
+          <li class="list-group-item"> Adultos invitados: <%= @event.guestadult %> adultos </li>
+          <li class="list-group-item"> Dirección: <%= @event.address %> </li>
+          <li class="list-group-item"> Teléfono de contacto: <%= @event.phone %> </li>
+          <li class="list-group-item"> Cumpleaños para niños entre: <%= @event.agekidsfrom %> y <%= @event.agekidsto %> </li>
+    </ul>
+  </div>
+   </div>
+  
+  
+  
+  <%= link_to 'Editar', edit_user_event_path(current_user, @event) %>
+  <%= link_to 'Back', user_events_path(current_user) %>
+    <%= link_to 'Buscar Proveedores', root_path  %>
+
+  </div>
+  </div>

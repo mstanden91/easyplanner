@@ -1,9 +1,31 @@
 Rails.application.routes.draw do
-  resources :transport_rates
+  get 'share/navbar'
 
-  resources :lists
+  #get 'catalog/index'
+
+  devise_for :users
+  
+  resources :users do 
+    resources :products do 
+     resources :additionals, except: [:show, :index]
+    end
+  end
+
+  resources :user do 
+    resources :lists do
+    resources :transport_rates, except: [:show]
+    end
+  end
+ 
+  resources :users do
+    resources :events do
+    end      
+  end
 
   get 'welcome/index'
+  get 'catalog/' => 'catalog#index', as: :catalog
+  get 'detail/:id' => 'welcome#detail', as: :detail
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

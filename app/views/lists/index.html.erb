@@ -1,11 +1,17 @@
+<div class ="container">
+ <div class="row">
+    <div class="product col-md-6 "><p>
+  
 <p id="notice"><%= notice %></p>
+<div>
+  <h2>Listas de Comunas y Precios</h2>
+</div>
 
-<h1>Listing Lists</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
-      <th>Name</th>
+      <th>Nombre de lista</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,9 +20,9 @@
     <% @lists.each do |list| %>
       <tr>
         <td><%= list.name %></td>
-        <td><%= link_to 'Show', list %></td>
-        <td><%= link_to 'Edit', edit_list_path(list) %></td>
-        <td><%= link_to 'Destroy', list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', edit_user_list_path(list.user, list) %></td>
+         <td><%= link_to 'Comunas y Precios Asociados', user_list_path(list.user, list) %></td>
+        <td><%= link_to 'Eliminar', user_list_path(list.user, list), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +30,41 @@
 
 <br>
 
-<%= link_to 'New List', new_list_path %>
+</div>
+</div>
+
+
+<div class= "container">
+<div class="row">
+    <div class="product col-md-6 "><p>
+  
+<%= form_for [current_user, @list] do |f| %>
+  <% if @list.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@list.errors.count, "error") %> prohibited this list from being saved:</h2>
+
+      <ul>
+      <% @list.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :'Nombre de lista' %><br>
+    <%= f.text_field :name, class: 'form-control' %>
+    <p class="help-block">Una lista incluirá todas las comunas con las que se trabajan y los costos de tranporte</p>
+  </div>
+  <div class="actions" class="btn btn-primary">
+    <%= f.submit "Guardar lista"%>
+   </div>
+<% end %>
+</div>
+
+
+</div>
+
+
+
+

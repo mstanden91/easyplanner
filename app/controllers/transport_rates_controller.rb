@@ -10,6 +10,7 @@ class TransportRatesController < ApplicationController
   # GET /transport_rates/1
   # GET /transport_rates/1.json
   def show
+    @transport_rates = TransportRate.all
   end
 
   # GET /transport_rates/new
@@ -25,17 +26,11 @@ class TransportRatesController < ApplicationController
   # POST /transport_rates.json
   def create
     @transport_rate = TransportRate.new(transport_rate_params)
-
-    respond_to do |format|
-      if @transport_rate.save
-        format.html { redirect_to @transport_rate, notice: 'Transport rate was successfully created.' }
-        format.json { render :show, status: :created, location: @transport_rate }
-      else
-        format.html { render :new }
-        format.json { render json: @transport_rate.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+    @list = List.find(params[:list_id])
+    @transport_rate.list = @list
+    @transport_rate.save
+    redirect_to user_list_url(current_user, @list)
+ end
 
   # PATCH/PUT /transport_rates/1
   # PATCH/PUT /transport_rates/1.json
@@ -43,7 +38,7 @@ class TransportRatesController < ApplicationController
     respond_to do |format|
       if @transport_rate.update(transport_rate_params)
         format.html { redirect_to @transport_rate, notice: 'Transport rate was successfully updated.' }
-        format.json { render :show, status: :ok, location: @transport_rate }
+        format.json { render :index, status: :ok, location: @transport_rate }
       else
         format.html { render :edit }
         format.json { render json: @transport_rate.errors, status: :unprocessable_entity }

@@ -5,11 +5,18 @@ class ListsController < ApplicationController
   # GET /lists.json
   def index
     @lists = List.all
+    @transport_rates = TransportRate.all 
+    @list = List.new     
   end
 
   # GET /lists/1
   # GET /lists/1.json
   def show
+    @user = current_user
+    @transport_rates = @list.transport_rates
+    # Instancia de un nuevo transport_rate
+    @transport_rate = TransportRate.new list: @list
+       
   end
 
   # GET /lists/new
@@ -25,11 +32,12 @@ class ListsController < ApplicationController
   # POST /lists.json
   def create
     @list = List.new(list_params)
+    @list.user_id = current_user.id
 
     respond_to do |format|
       if @list.save
-        format.html { redirect_to @list, notice: 'List was successfully created.' }
-        format.json { render :show, status: :created, location: @list }
+        format.html { redirect_to user_lists_path(current_user), notice: 'List was successfully created.' }
+        format.json { render :index, status: :created, location: @lists }
       else
         format.html { render :new }
         format.json { render json: @list.errors, status: :unprocessable_entity }
@@ -42,7 +50,7 @@ class ListsController < ApplicationController
   def update
     respond_to do |format|
       if @list.update(list_params)
-        format.html { redirect_to @list, notice: 'List was successfully updated.' }
+        format.html { redirect_to user_lists_path(current_user), notice: 'List was successfully updated.' }
         format.json { render :show, status: :ok, location: @list }
       else
         format.html { render :edit }
@@ -56,7 +64,7 @@ class ListsController < ApplicationController
   def destroy
     @list.destroy
     respond_to do |format|
-      format.html { redirect_to lists_url, notice: 'List was successfully destroyed.' }
+      format.html { redirect_to user_lists_path(current_user), notice: 'List was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +77,6 @@ class ListsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def list_params
-      params.require(:list).permit(:name)
+      params.require(:list).permit(:name, :user_id)
     end
 end

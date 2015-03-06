@@ -1,0 +1,228 @@
+<div class="container">
+  <p id="notice"><%= notice %></p>
+  
+<p>
+     <div class="row">
+          <div class="col-md-4">
+               <div  class="columna1" >
+         <%= link_to 'Editar Producto', edit_user_product_path(current_user, @product) %> 
+               </div>
+          </div>
+          <div class="col-md-7">
+             <div  class:"columna2" >
+               
+          <%= link_to 'Finalizar', user_products_path(current_user) %> 
+              </div>
+          </div>
+      </div
+
+</p>  
+  
+  <div class="row">
+    <div class="product col-md-6 "><p>
+
+    <div class="panel panel-primary">
+  <!-- Default panel contents -->
+  <div class="panel-heading"><%= @product.name %> | <%=  Category.find(@product.category_id).name %> </div>
+  <div class="panel-body">
+    <p>
+      <div class="row">
+          <div class="col-md-5">
+               <div  class="columna1" >
+            <%= image_tag(@product.photo, size:"200") %>
+               </div>
+          </div>
+          <div class="col-md-7">
+             <div  class:"columna2" >
+           <%= @product.description %>
+              </div>
+          </div>
+      </div>
+     
+    
+    </p>
+  </div>
+
+  <!-- List group -->
+  <ul class="list-group">
+    <li class="list-group-item"> Nombre: <%= @product.name %>
+    </li>
+    <li class="list-group-item"> Categoría : <%=  Category.find(@product.category_id).name %></li>
+    <li class="list-group-item"> Ideal para niños entre <%= (@product.age_range_from) %> y <%= (@product.age_range_to)%></li>
+     <li class="list-group-item"> Duración del servicio: <%=  Timeservice.find(@product.timeservice_id).name %>  </li>
+     <li class="list-group-item"> Tiempo adicional: <%=  @product.options_extra_time %>, <%= @product.description_extra_time %>
+     </li>
+
+    <li class="list-group-item"> La capacidad máxima del producto son: <%=  Maxcapacity.find(@product.maxcapacity_id).name %></li>
+  
+    <li class="list-group-item"> <%= @product.options_extra_kid_string %> Se aceptan hasta <%= @product.max_extra_kid %> y cada uno tiene un costo de <%= @product.cost_extra_kid %> </li>
+    <li class="list-group-item">EL precio base es $<%= @product.base_price %></li>
+    <li class="list-group-item"><%=  List.find(@product.list_id).name %></li>
+    <li class="list-group-item"><%= @product.options_additional %></li>
+  </ul>
+</div>
+
+
+ </div>
+
+ <!-- Formulario de adicionales -->
+
+ <% if @product.options_additional == 'Si' %>
+ <div class="adicionales col-md-7">
+
+
+   <div class="panel panel-primary" class="categorias" class="menuform">
+    <div class="panel-heading">Opciones con costo adicional al producto</div>
+    <div class="col-md-offset-1">
+      <%= form_for([@user, @product, @additional]) do |f| %>
+      <% if @additional.errors.any? %>
+      <div id="error_explanation">
+       <h2><%= pluralize(@additional.errors.count, "error") %> prohibited this additional from being saved:</h2>
+
+       <ul>
+         <% @additional.errors.full_messages.each do |message| %>
+         <li><%= message %></li>
+         <% end %>
+       </ul>
+     </div>
+     <% end %>
+
+     <h5>Crear Adicional</h5>
+     <div class="field">
+       <%= f.label :name %><br>
+       <%= f.text_field :name %>
+     </div>
+     <div class="field">
+       <%= f.label :price %><br>
+       <%= f.number_field :price %>
+     </div>
+
+     <%= f.submit :value => "enviar" %>
+     <% end %>
+
+     <table class="table">
+       <caption>Adicionales para este producto</caption>
+       <thead>
+         <tr>
+           <th>Nombre de Adicional</th>
+           <th>Precio</th>
+         </tr>
+       </thead>
+       <tbody>
+         <tr>
+           <% @additionals.each do |additional| %>
+           <td><%= additional.name %></td>
+           <td><%= additional.price %> </td>
+            <!-- <td><%= link_to 'Edit', edit_user_product_additional_path(current_user, additional.product_id, additional) %></td> -->
+           <td><%= link_to 'Eliminar Adicional',  user_product_additional_path(current_user, additional.product_id, additional), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+           <br>
+           </tr>
+           <% end %> 
+         
+       </tbody>
+     </table>
+   </div> 
+  </div>
+  <% end %> 
+   
+   </div>
+   
+  
+
+
+
+
+   
+   <!-- Formulario de adicionales -->
+ </div>
+
+
+
+<!--      <strong>Foto:</strong>
+     <%= image_tag(@product.photo) %>
+   </p>
+
+   <p>
+     <strong>Category:</strong>
+     <% if  @product.category_id != nil %>
+     <%=  Category.find(@product.category_id).name %>
+     <% else %>
+     <%= @product.category_id %>
+     <% end %>
+   </p>
+
+   <p>
+     <strong>Name:</strong>
+     <%= @product.name %>
+   </p>
+
+   <p>
+     <strong>Age range from:</strong>
+     <%= @product.age_range_from %>
+   </p>
+
+   <p>
+     <strong>Age range to:</strong>
+     <%= @product.age_range_to %>
+   </p> 
+
+   <p>
+     <strong>Time service:</strong>
+     <% if  @product.timeservice_id != nil %>
+     <%=  Timeservice.find(@product.timeservice_id).name %>
+     <% else %>
+     <%= @product.timeservice_id %>
+     <% end %>
+   </p>
+
+   <p>
+     <strong>Options extra time:</strong>
+     <%= @product.options_extra_time %>
+   </p>
+
+   <p>
+     <strong>Description extra time:</strong>
+     <%= @product.description_extra_time %>
+   </p>
+
+   <p>
+     <strong>Maxcapacity:</strong>
+     <% if  @product.maxcapacity_id != nil %>
+     <%=  Maxcapacity.find(@product.maxcapacity_id).name %>
+     <% else %>
+     <%= @product.maxcapacity_id %>
+     <% end %>
+ </p>
+      <p>
+     <strong>Options extra kid string:</strong>
+     <%= @product.options_extra_kid_string %>
+   </p>
+
+   <p>
+     <strong>Cost extra kid:</strong>
+     <%= @product.cost_extra_kid %>
+   </p>
+
+   <p>
+     <strong>Max extra kid:</strong>
+     <%= @product.max_extra_kid %>
+   </p>
+
+   <p>
+     <strong>Base price:</strong>
+     <%= @product.base_price %>
+   </p>
+      <p>
+     <strong>Lista asignada:</strong>
+     <% if @product.list_id != nil %>
+     <%=  List.find(@product.list_id).name %>
+     <% else %>
+     <%= @product.list_id %>
+     <% end %>
+   </p>
+
+   <p>
+     <strong>Options additional:</strong>
+     <%= @product.options_additional %>
+   </p>
+-->

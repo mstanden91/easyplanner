@@ -1,0 +1,34 @@
+.columna1.
+.columna2 {
+   display: inline-block;
+}
+
+.columna1 {
+ width: 100%;
+}
+
+.columna2 {
+  width: 100%;
+}
+
+.field {
+  border-bottom: 20px;
+  margin-bottom: 20px;
+  padding: 3px;
+}
+
+.div {
+  margin-bottom: 5px;
+}
+
+#text_field {
+  width: 100%;
+}
+
+.titulopaginas {
+  margin-bottom: 5px;
+  padding: 5px; 
+
+}
+
+

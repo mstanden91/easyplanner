@@ -1,8 +1,27 @@
-<h1>Easy Planner</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
+<div class="container">
+  
+       
+   <div class="row vista-general-productos">
+    <% @products.each do |product| %>
+    <div class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+         <%= image_tag(product.photo, size:"250") %>
+        <div class="caption">
+          <h3><%= product.name %></h3>
+          <p> Rango de edad adecuado: <%= product.age_range_from %> a <%= product.age_range_to %></p>
+          <p> Precio: <%= product.base_price %></p>
+          <p> Capacidad máxima: <%=  Maxcapacity.find(product.maxcapacity_id).name %></p>
+          <p> Tiempo: <%=  Timeservice.find(product.timeservice_id).name %></p>
+
+          <p><a href="<%= detail_path(product.id) %>" class="btn btn-primary" role="button">Ver más</a> </p>
+        
+        </div>
+      </div>
+    </div>
+     <% end %>
+  </div> 
+</div>
 
 
 
-<%= select  [ ["Read Only", "read"], ["IP Voice Telephony", "ip_voice"], ["IP Video Telephony", "ip_video_telephony"], ["Enterprise Gateways", "enterprise_gateways"], ["Consumer ATAs", "consumer_atas"], ["IP PBX", "ip_pbx"], ["Master of All", "all"] ], {prompt: "Select Permission Level"},
-  {:multiple => true, class: "input-lg"} %>
 

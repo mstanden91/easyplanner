@@ -1,0 +1,41 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  category_id: 
+  kind: MyString
+  name: MyString
+  age_range_from: MyString
+  age_range_to: MyString
+  timeservice_id: 
+  maxcapacity_id: 
+  base_price: 1
+  option_transport: MyString
+  list_id: 
+  options_extra_time: MyString
+  description_extra_time: MyText
+  options_extra_kid_string: MyString
+  cost_extra_kid: 1
+  max_extra_kid: 1
+  options_additional: MyString
+  user_id: 1
+  
+
+two:
+  category_id: 
+  kind: MyString
+  name: MyString
+  age_range_from: MyString
+  age_range_to: MyString
+  timeservice_id: 
+  maxcapacity_id: 
+  base_price: 1
+  option_transport: MyString
+  list_id: 
+  options_extra_time: MyString
+  description_extra_time: MyText
+  options_extra_kid_string: MyString
+  cost_extra_kid: 1
+  max_extra_kid: 1
+  options_additional: MyString
+  user_id: 1
+ 

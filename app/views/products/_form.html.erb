@@ -1,0 +1,250 @@
+<%= form_for [current_user, @product] do |f| %>
+<% if @product.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+  <ul>
+    <% @product.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<div class="row">
+  <div class="col-md-7">
+    <div class="col-md-offset-1">
+
+      <div class="panel panel-info" class="categorias" class="menuform">
+       <div class="panel-heading">Categorías del producto o servicio que ofrecerá</div>
+
+
+       <div class="field" type="text" class="form-control" >
+        <%= f.label :Categoría %><br>
+        <%= f.select :category_id, Category.all.map{|c| [c.name, c.id]}, { :prompt => "Selecciona una categoría" }, {:class => "form-control" } %>
+      </div>
+           
+     
+  </div> 
+
+
+  <div class="panel panel-info" class="general" class="menuform">
+    <div class="panel-heading">Información General</div>
+
+    <div class="field" type="text" class="form-control" >
+      <%= f.label :Nombre %><br>
+      <%= f.text_field :name, class: "form-control",  placeholder: "Ingrese el nombre de su producto o servicio" %>
+       <p class="help-block">Su producto aparecerá con este nombre en las búsquedas de los clientes</p>
+    </div>
+
+    <div class="field" type="text" class="form-control" >
+      <%= f.label :Foto %><br>
+      <%= f.text_field :photo, class: "form-control" %>
+    </div>
+
+    <div class="field" class="menuform">
+      <%= f.label :'Precio Base' %><br>
+      <%= f.number_field :base_price, min: 0, placeholder:"Ingrese el precio de su producto", class: "form-control" %>
+      <p class="help-block">Este precio no incluye costos de traslado (estos serán aplicados por cada comuna)</p>
+    </div>
+
+    <div class="field" type="text" class="form-control" >
+      <%= f.label :Descripción %><br>
+      <%= f.text_area :description,  size: "60x12", class: "form-control", placeholder:"Ingrese una descripción completa del producto o servicio que ofrecerá"  %>
+    </div>
+
+  </div>
+
+  <div  class="panel panel-info" class = "edades" class="menuform">
+    <div class="panel-heading">Edad adecuada para el producto o servicio</div>
+
+    <div id="rango-edades">
+      <div class="row">
+        <div class="col-md-6">
+         <div class="field" class="form-event" class="columna1">
+
+          <%= f.label :'Desde los' %><br>
+          <%= f.select :age_range_from, Agerange.all.map{|a| [a.name]}, { :prompt => "Para niños desde:" }, {:class => "form-control" } %>
+        </div>
+      </div>
+      <div class="col-md-6">
+       <div class="field" class="form-event" class:"columna2" >
+        <%= f.label :'Hasta la edad de' %><br>
+        <%= f.select :age_range_to, Agerange.all.map{|a| [a.name]}, { :prompt => "Hasta los:" }, {:class => "form-control" }  %>
+      </div>
+    </div>
+  </div>
+  <p class="help-block">A partir de esta información, se le recomendará al cliente su producto según las edades de los asistentes del cumpleaños</p>
+</div>
+
+  
+
+  </div>
+
+  <div  class="panel panel-info" class="tiempoevento" class="menuform" id="tiempos-producto" >
+    <div class="panel-heading">Tiempos del servicio o del arriendo</div>
+
+    <div class="field">
+     <%= f.label :'Duración del arriendo o servicio' %><br>
+     <%= f.select :timeservice_id, Timeservice.all.map{|t| [t.name, t.id]}, { :prompt => "Ingrese duración del arriendo o del servicio" }, {:class => "form-control" } %>
+   </div>
+   <div class="field">
+     <%= f.label :'Opciones de tiempo adicional' %><br>
+     <%= f.select :options_extra_time, options_for_select([['No hay posibilidades de tiempo adicional' , 'No hay posibilidades de tiempo adicional'],['Si puede extenderse, pero tiene un costo adicional' ,'El tiempo puede extenderse, pero tiene un costo adicional' ]]), { :prompt => "Especifique su sistema de cobro de tiempo adicional" }, {:class => "form-control" } %> 
+   </div>
+   <div class="field" id="descript-time">
+     <%= f.label :'Explique como cobra el tiempo adicional y en que casos se aplica' %><br>
+     <%= f.text_area :description_extra_time, placeholder: "Exiplique como se realizará este cobro, por ejempo: Se cobran $10.000 por cada hora adicional",  class: "form-control" %>
+   </div>
+ </div>
+
+ <div class="panel panel-info" class="capacidad" class="menuform">
+  <div class="panel-heading">Capacidad de niños por producto o servicio</div>
+
+      <div class="field">
+       <%= f.label :'Capacidad máxima de niños' %><br>
+       <%= f.select :maxcapacity_id, Maxcapacity.all.map{|m| [m.name, m.id]}, {}, class: "form-control"  %>  
+     </div>
+     <div class="field">
+       <%= f.label :'En cuanto a niños adicionales' %><br>
+       <%= f.select :options_extra_kid_string, options_for_select([['Los niños adicionales tienen un costo extra' ,'Si' ],['Se pueden incluir más niños sin costo' , 'Si, sin costo'],['No se admiten niños adicionales' , 'No']]), {}, class: "form-control" %>
+      </div>
+
+  <div id="detalle-adicionales">
+    <div class="row">
+          <div class="col-md-6">
+           <div class="field" class="form-event" class="columna1">
+              <%= f.label :'El costo por niño extra es: ' %><br>
+              <%= f.number_field :cost_extra_kid, min: 0, class: "form-control" %>
+            </div>
+          </div>
+
+        <div class="col-md-6">
+         <div class="field" class="form-event" class:"columna2">
+           <%= f.label :'El máximo de niños adicionales es: ' %><br>
+           <%= f.number_field :max_extra_kid, min:0,  class: "form-control" %>
+         </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div class="panel panel-info" class="despacho" class="menuform">
+ <div class="panel-heading"> Comunas en las que se realizan traslados y sus costos asociados</div> 
+
+ <div class="field" id="despacho-producto" style="display: none">
+  <%= f.label :'En cuanto la obtención del producto: ' %><br>
+  <%= f.select :option_transport, options_for_select([['Solo con Retiro en local' , 'Retiro'],['Con despacho a domicilio' ,'Despacho' ],['Con despacho o retiro' , 'Despacho/Retiro']]), {}, class: "form-control" %>
+</div>
+<div class="field" id="lista-producto">
+  <%= f.label :'Seleccione una tabla creada con las comunas a las que llega y sus costos adicionales asociados' %><br>
+  <%= f.select :list_id, @lists.map{|l| [l.name, l.id]}, {}, class: "form-control"  %>
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @lists.each do |list| %>
+      <tr>
+        <td><%= list.name %></td>
+        <td><%= link_to 'Edit', edit_user_list_path(list.user, list) %></td>
+         <td><%= link_to 'Comunas y Precios Asociados', user_list_path(list.user, list) %></td>
+        <td><%= link_to 'Eliminar', user_list_path(list.user, list), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+</div>
+
+<div class="panel panel-info" class="adicionales" class="menuform">
+ <div class="panel-heading">Opciones adicionales al mismo producto o servicios</div>
+
+ <div class="field">
+  <%= f.label :'¿Existen adicionales que pueden aumentar su precio? ' %><br>
+  <%= f.select :options_additional, options_for_select([['
+   Si' , 'Si'],['No' ,'No' ]]), {}, class: "form-control" %>
+ 
+   <!-- Llamar a la tabla adicionales desde aca y poder crear adicionales  -->
+ </div>
+
+
+</div>
+
+<div class="actions">
+
+ <%= f.submit "enviar" %>
+</div>
+
+</div>
+</div>
+</div>
+<% end %>
+
+
+  <script>
+ $(function () {
+  $("#product_category_id").change(function(event) {
+    var categoria = this.value;
+     if (categoria == 5 || categoria == 6 ){
+      $("#despacho-producto").slideDown(500);
+    }
+    else{
+      $("#despacho-producto").slideUp(500);
+    }
+  });
+
+ });
+ </script>
+
+  <script>
+ $(function () {
+  $("#product_category_id").change(function(event) {
+    var categoria = this.value;
+     if (categoria == 5 || categoria == 6 ){
+      $("#tiempos-producto").slideUp(500);
+    }
+    else{
+      $("#tiempos-producto").slideDown(500);
+    }
+  });
+
+ });
+ </script>
+<!-- 
+Sobre elementos que no son categorías -->
+
+ <script>
+ $(function () {
+  $("#product_option_transport").change(function(event) {
+    var opcion = this.value;
+     if (opcion == 'Retiro'){
+      $("#lista-producto").slideUp(500);
+    }
+    else{
+      $("#lista-producto").slideDown(500);
+    }
+  });
+ });
+ </script>
+
+<!-- 
+Aun no funciona lo de los niños extra -->
+ <script>
+ $(function () {
+  $("#options_extra_kid_string").change(function(event) {
+    var opcion = this.value;
+     if (opcion == 'No'){
+      $("#detalle-adicionales").slideUp(500);
+    }
+    else{
+      $("#detalle-adicionales").slideDown(500);
+    }
+  });
+ });
+ </script>

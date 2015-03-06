@@ -1,0 +1,51 @@
+<p id="notice"><%= notice %></p>
+<div class="form-index">
+  <div class="container">
+      <header id="header" class="encabezados">
+        <h1>Eventos Creados </h1>
+          <%= link_to 'Crear nuevo cumpleaños', new_user_event_path(current_user) %>
+
+      </header><!-- /header -->
+        
+      
+    
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Evento</th>
+          <th>Comuna</th>
+          <th>Fecha</th>
+          <th>Hora inicio</th>
+          <th>Niños invitados</th>
+       
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+    
+      <tbody>
+        <% @events.each do |event| %>
+          <tr>
+            
+            <td> Cumpleaños de <%= event.namekid %></td>
+            <td><%= event.comunne.name %></td>
+            <td><%= event.date %></td>
+            <td><%= event.timefrom %></td>
+            <td><%= event.guestkid %></td>
+                        
+            <td>
+         
+            </td>
+            <td><%= link_to 'Buscar Proveedores', catalog_path(comunne_id: event.comunne_id)  %></td>
+            <td><%= link_to 'Más Detalle', user_event_path(current_user, event) %></td>
+            <td><%= link_to 'Editar', edit_user_event_path(current_user, event) %></td> 
+            <td><%= link_to 'Eliminar', user_event_path(current_user, event), method: :delete, data: { confirm: '¿Estás seguro?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    
+    <br>
+  </div>
+
+  </div>
+ 
