@@ -9,8 +9,12 @@
   <div class="panel-heading"><%= @product.name %> | <%=  Category.find(@product.category_id).name %> </div>
   <div class="panel-body">
     <p>
-    <%= image_tag(@product.photo, size:"300") %>    
+    <%= image_tag(@product.photo, size:"300") %>   
+    <div class="row">
+    <div class="col-md-7">
     <%= @product.description %>
+    </div>
+    </div>
     </p>
   </div>
 
@@ -24,9 +28,7 @@
      <li class="list-group-item">
      <%= @product.options_extra_time %>. <%= @product.description_extra_time %>
      </li>
-
     <li class="list-group-item"> La capacidad máxima del producto son: <%=  Maxcapacity.find(@product.maxcapacity_id).name %></li>
-  
     <li class="list-group-item"> <%= @product.options_extra_kid_string %> Se aceptan hasta <%= @product.max_extra_kid %> y cada uno tiene un costo de <%= @product.cost_extra_kid %> </li>
     <li class="list-group-item">EL precio base es $<%= @product.base_price %></li>
     <li class="list-group-item"><%= @product.options_additional %></li>

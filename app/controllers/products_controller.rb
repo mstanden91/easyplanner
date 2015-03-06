@@ -13,6 +13,7 @@ class ProductsController < ApplicationController
   # GET /products/1.json
   def show
     @user = current_user
+    @lists = List.all
     @additionals = @product.additionals.all
     # Instancia de un nuevo adicional
     @additional = Additional.new product: @product

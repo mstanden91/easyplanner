@@ -17,6 +17,8 @@
 # end
 
 
+
+
 comunne = [
   
 ['Cerrillos '], ['Cerro Navia '], ['Conchalí '], ['El Bosque '], ['Estación Central '], ['Huechuraba '], ['Independencia '], ['La Cisterna '], ['La Florida '], ['La Pintana '], ['La Granja '], ['Padre Hurtado '], ['Pirque '], ['La Reina '], ['Las Condes '], ['Lo Barnechea '], ['Lo Espejo '], ['Lo Prado '], ['Macul '], ['Maipú '], ['Ñuñoa '], ['Pedro Aguirre Cerda '], ['Peñalolén '], ['Providencia '], ['Pudahuel'], ['Quilicura'], ['Quinta Normal'], ['Recoleta'], ['Renca'], ['San Miguel'], ['San Joaquín'], ['San Ramón'], ['Santiago'], ['Vitacura'], ['San Bernardo '], ['San José de Maipo'], ['Puente Alto'] 
@@ -34,7 +36,7 @@ timeservice.map{|b| Timeservice.create(name: b.first)}
 
 maxcapacity = [
 
-['1 ñiño'], ['2 niños'], ['3 niños'], ['4 niños'], ['5 niños'], ['6 niños'], ['7 niños'], ['8 niños'], ['9 niños'], ['10 niños'], ['11 niños'], ['12 niños'], ['13 niños'], ['14 niños'], ['15 niños'], ['16 niños'], ['17 niños'], ['18 niños'], ['19 niños'], ['20 niños'], ['21 niños'], ['22 niños'], ['23 niños'], ['24 niños'], ['25 niños'], ['26 niños'], ['27 niños'], ['28 niños'], ['29 niños'], ['30 niños'], ['31 niños'], ['32 niños'], 
+['1 niño'], ['2 niños'], ['3 niños'], ['4 niños'], ['5 niños'], ['6 niños'], ['7 niños'], ['8 niños'], ['9 niños'], ['10 niños'], ['11 niños'], ['12 niños'], ['13 niños'], ['14 niños'], ['15 niños'], ['16 niños'], ['17 niños'], ['18 niños'], ['19 niños'], ['20 niños'], ['21 niños'], ['22 niños'], ['23 niños'], ['24 niños'], ['25 niños'], ['26 niños'], ['27 niños'], ['28 niños'], ['29 niños'], ['30 niños'], ['31 niños'], ['32 niños'], 
 ['33 niños'], ['34 niños'], ['35 niños'], ['36 niños'], ['37 niños'], ['38 niños'], ['39 niños'], ['40 niños'], ['41 niños'], ['42 niños'], ['43 niños'], ['44 niños'], ['45 niños'], ['46 niños'], ['47 niños'], ['48 niños'], ['49 niños'], ['50 niños'], ['51 niños'], ['52 niños'], ['53 niños'], ['54 niños'], ['55 niños'], ['56 niños'], ['57 niños'], ['58 niños'], ['59 niños'], ['60 niños'], ['61 niños'], ['62 niños'], ['63 niños'], ['64 niños'], 
 ['65 niños'], ['66 niños'], ['67 niños'], ['68 niños'], ['69 niños'], ['70 niños'], ['71 niños'], ['72 niños'], ['73 niños'], ['74 niños'], ['75 niños'], ['76 niños'], ['77 niños'], ['78 niños'], ['79 niños'], ['80 niños'], ['81 niños'], ['82 niños'], ['83 niños'], ['84 niños'], ['85 niños'], ['86 niños'], ['87 niños'], ['88 niños'], ['89 niños'], ['90 niños'], ['91 niños'], ['92 niños'], ['93 niños'], ['94 niños'], ['95 niños'], ['96 niños'], 
 ['97 niños'], ['98 niños'], ['99 niños'], ['100 niños'], 

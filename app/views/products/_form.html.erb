@@ -90,7 +90,7 @@
    </div>
    <div class="field">
      <%= f.label :'Opciones de tiempo adicional' %><br>
-     <%= f.select :options_extra_time, options_for_select([['No hay posibilidades de tiempo adicional' , 'No hay posibilidades de tiempo adicional'],['Si puede extenderse, pero tiene un costo adicional' ,'EL tiempo puede extenderse, pero tiene un costo adicional' ]]), { :prompt => "Especifique su sistema de cobro de tiempo adicional" }, {:class => "form-control" } %> 
+     <%= f.select :options_extra_time, options_for_select([['No hay posibilidades de tiempo adicional' , 'No hay posibilidades de tiempo adicional'],['Si puede extenderse, pero tiene un costo adicional' ,'El tiempo puede extenderse, pero tiene un costo adicional' ]]), { :prompt => "Especifique su sistema de cobro de tiempo adicional" }, {:class => "form-control" } %> 
    </div>
    <div class="field" id="descript-time">
      <%= f.label :'Explique como cobra el tiempo adicional y en que casos se aplica' %><br>
@@ -107,7 +107,7 @@
      </div>
      <div class="field">
        <%= f.label :'En cuanto a niños adicionales' %><br>
-       <%= f.select :options_extra_kid_string, options_for_select([['Los niños adicionales tienen un costo extra' ,'SiExtraKid' ],['Se pueden incluir más niños sin costo' , 'SiExtraKidNoCost'],['No se admiten niños adicionales' , 'NoExtraKid']]), {}, class: "form-control" %>
+       <%= f.select :options_extra_kid_string, options_for_select([['Los niños adicionales tienen un costo extra' ,'Si' ],['Se pueden incluir más niños sin costo' , 'Si, sin costo'],['No se admiten niños adicionales' , 'No']]), {}, class: "form-control" %>
       </div>
 
   <div id="detalle-adicionales">
@@ -239,7 +239,7 @@ Aun no funciona lo de los niños extra -->
  $(function () {
   $("#options_extra_kid_string").change(function(event) {
     var opcion = this.value;
-     if (opcion == 'NoExtraKid'){
+     if (opcion == 'No'){
       $("#detalle-adicionales").slideUp(500);
     }
     else{

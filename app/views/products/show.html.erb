@@ -1,20 +1,45 @@
 <div class="container">
   <p id="notice"><%= notice %></p>
   
-  <%= link_to 'Editar Producto', edit_user_product_path(current_user, @product) %> 
-  <%= link_to 'Finalizar', user_products_path(current_user) %> 
-  
+<p>
+     <div class="row">
+          <div class="col-md-4">
+               <div  class="columna1" >
+         <%= link_to 'Editar Producto', edit_user_product_path(current_user, @product) %> 
+               </div>
+          </div>
+          <div class="col-md-7">
+             <div  class:"columna2" >
+               
+          <%= link_to 'Finalizar', user_products_path(current_user) %> 
+              </div>
+          </div>
+      </div
+
+</p>  
   
   <div class="row">
     <div class="product col-md-6 "><p>
 
-    <div class="panel panel-default">
+    <div class="panel panel-primary">
   <!-- Default panel contents -->
   <div class="panel-heading"><%= @product.name %> | <%=  Category.find(@product.category_id).name %> </div>
   <div class="panel-body">
     <p>
-    <%= image_tag(@product.photo, size:"150") %>    
-    <%= @product.description %>
+      <div class="row">
+          <div class="col-md-5">
+               <div  class="columna1" >
+            <%= image_tag(@product.photo, size:"200") %>
+               </div>
+          </div>
+          <div class="col-md-7">
+             <div  class:"columna2" >
+           <%= @product.description %>
+              </div>
+          </div>
+      </div>
+     
+    
     </p>
   </div>
 
@@ -25,8 +50,7 @@
     <li class="list-group-item"> Categoría : <%=  Category.find(@product.category_id).name %></li>
     <li class="list-group-item"> Ideal para niños entre <%= (@product.age_range_from) %> y <%= (@product.age_range_to)%></li>
      <li class="list-group-item"> Duración del servicio: <%=  Timeservice.find(@product.timeservice_id).name %>  </li>
-     <li class="list-group-item">
-     <%= @product.options_extra_time %>. <%= @product.description_extra_time %>
+     <li class="list-group-item"> Tiempo adicional: <%=  @product.options_extra_time %>, <%= @product.description_extra_time %>
      </li>
 
     <li class="list-group-item"> La capacidad máxima del producto son: <%=  Maxcapacity.find(@product.maxcapacity_id).name %></li>
@@ -89,11 +113,12 @@
            <% @additionals.each do |additional| %>
            <td><%= additional.name %></td>
            <td><%= additional.price %> </td>
-           <!-- <td><%= link_to 'Edit', edit_user_product_additional_path(current_user, additional.product_id, additional) %></td> -->
+            <!-- <td><%= link_to 'Edit', edit_user_product_additional_path(current_user, additional.product_id, additional) %></td> -->
            <td><%= link_to 'Eliminar Adicional',  user_product_additional_path(current_user, additional.product_id, additional), method: :delete, data: { confirm: 'Are you sure?' } %></td>
            <br>
+           </tr>
            <% end %> 
-         </tr>
+         
        </tbody>
      </table>
    </div> 
