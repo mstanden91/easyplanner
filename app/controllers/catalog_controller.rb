@@ -10,9 +10,7 @@ class CatalogController < ApplicationController
      unless @comunne_id.nil?
       @comunne = Comunne.find(@comunne_id)
       @products = @comunne.products
-      @list = 
-      @price_transport = @comunne.price 
-     else 
+      else 
       @products = Product.all
      end
 
