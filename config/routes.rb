@@ -22,7 +22,11 @@ Rails.application.routes.draw do
     end      
   end
 
-  get 'welcome/index'
+  #get 'welcome/index'
+  #get '/:locale', to 'welcome#index'
+  # scope "(:locale)", locale: /es|en/ do 
+  #end
+  
   get 'catalog/' => 'catalog#index', as: :catalog
   get 'detail/:id' => 'welcome#detail', as: :detail
 
