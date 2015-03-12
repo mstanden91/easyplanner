@@ -15,8 +15,8 @@
         <div class="caption">
           <h3><%= product.name %></h3>
           <p> Rango de edad adecuado: <%= product.age_range_from %> a <%= product.age_range_to %></p>
-          <p> Precio: <%= number_to_currency(product.base_price) %></p>
-          <p> Precio Transporte: <%= number_to_currency(product.transport_rates.where(comunne_id: @comunne.id).first.price, locale: :es) %></p>
+          <p> Precio: <%= number_to_currency(product.base_price, locale: :'es-CL') %></p>
+          <p> Precio Transporte: <%= number_to_currency(product.transport_rates.where(comunne_id: @comunne.id).first.price, locale: :'es-CL') %></p>
           <p> Capacidad máxima: <%=  Maxcapacity.find(product.maxcapacity_id).name %></p>
           <p> Tiempo: <%=  Timeservice.find(product.timeservice_id).name %></p>
 
