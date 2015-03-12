@@ -5,7 +5,7 @@
     <% @products.each do |product| %>
     <div class="col-sm-6 col-md-4">
       <div class="thumbnail">
-         <%= image_tag(product.photo, size:"250") %>
+         <%= image_tag(product.photo, size:"200") %>
         <div class="caption">
           <h3><%= product.name %></h3>
           <p> Rango de edad adecuado: <%= product.age_range_from %> a <%= product.age_range_to %></p>

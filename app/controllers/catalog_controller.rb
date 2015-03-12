@@ -9,7 +9,9 @@ class CatalogController < ApplicationController
      @comunne_id = params[:comunne_id]
      unless @comunne_id.nil?
       @comunne = Comunne.find(@comunne_id)
-      @products = @comunne.products 
+      @products = @comunne.products
+      @list = 
+      @price_transport = @comunne.price 
      else 
       @products = Product.all
      end
