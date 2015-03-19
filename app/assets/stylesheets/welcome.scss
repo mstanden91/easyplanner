@@ -1,3 +1,42 @@
 // Place all the styles related to the welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.jumbotron {
+  background-image: url("ninos.jpg");
+  background-size: 100% auto;
+  color: white;  
+  background-position: center top; 
+  height: 500px;
+  text-align: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  padding: 2px;
+  margin-bottom: 50px;
+  }
+  
+.jumbotron h1 {
+  text-shadow: 2px 2px 4px #333;
+  font-weight: bold;
+}
+
+.thumbnail {
+  padding: 5px;
+  height: 500px;
+  weight: 400px;
+  border-radius: 2px;
+
+}
+
+.caption {
+  position: center;
+}
+.btn-primary {
+  }
+
+h1,
+h2,
+h3 {
+  font-family: 'Ubuntu', sans-serif;
+}
+

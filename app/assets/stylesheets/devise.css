@@ -1,0 +1,56 @@
+  
+.paginaRegistro {
+  background-image: url("globos.jpg");
+  background-repeat: no-repeat;
+  size: 1600px 1500px;
+  background-position: center; 
+  height: 750px;
+}
+
+.escrito {
+    background-color: white;
+    border: 2px solid #207ce5;
+    opacity: 0.8;
+    filter: alpha(opacity=60);
+    margin-top: 50px;
+    text-align: center;
+    padding-bottom: 50px;
+    border-radius: 25px;
+
+}
+
+.form-control .input {
+
+  background-color: white;
+}
+
+.titulo {
+  margin-top: 0px;
+
+}
+
+.sub-titulo {
+  margin-top: 1px;
+  margin-bottom: 30px;
+}
+
+.campos {
+
+  margin-top: 2px;
+
+}
+
+.logo {
+  background-image: url("logo.png");
+  height: 150px;
+  width: 200px;
+  background-position: center; 
+  background-repeat: no-repeat;
+  margin-left: auto;
+    margin-right: auto;
+}
+
+.h1,
+.h2 {
+  text-decoration-color: #207ce5;
+}
