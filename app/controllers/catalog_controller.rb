@@ -1,31 +1,28 @@
 class CatalogController < ApplicationController
   
-  #por categoría
   def index
-      
-     @categories = Category.all
-     @comunnes = Comunne.all
-     @category_id = params[:category_id]
-     @comunne_id = params[:comunne_id]
-     unless @comunne_id.nil?
+    #Filtro por categoria, por comuna y por el nombre y descripcion
+
+    #Primero capturamos todas las categorías y comunas
+    @categories = Category.all
+    @comunnes = Comunne.all
+
+    #Filtramos por comunas
+    @comunne_id = params[:comunne_id]
+    unless @comunne_id.nil?
       @comunne = Comunne.find(@comunne_id)
       @products = @comunne.products
-      else 
+    else 
       @products = Product.all
-     end
-
-     @products = @products.where(category_id: @category_id) unless @category_id.nil?
-
-    if params[:q].nil?
-      @products = Product.all
-    else
-      @products = Product.where("name like ?", "%#{params[:q]}%") && Product.where("description like ?", "%#{params[:q]}%")
     end
-     
-     # @products = @comuna.products 
 
-     # @products = @products.includes(:list).where(comunne_id: @comunne_id) unless @comunne_id.nil?
-    
+    # Filtramos por categorias 
+    @category_id = params[:category_id]
+    @products = @products.where(category_id: @category_id) unless @category_id.nil?
+
+    # Filtramos por nombre y descripción
+    @products = @products.where("name like ?", "%#{params[:q]}%") || @products.where("description like ?", "%#{params[:q]}%") unless params[:q].nil?
+         
   end
   
   
