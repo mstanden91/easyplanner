@@ -7,17 +7,24 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-# 20.times do
-#   random_size = Random.rand(300)+300
-#   Product.create name: Faker::Lorem.words(Random.rand(3) + 1).join(' ').titleize,
-#   description: Faker::Lorem.paragraphs(3, true).join(' '),
-#   photo: "http://placecreature.com/#{random_size}/#{random_size}",
-#   comunne_id: 
+ 20.times do
+   random_size = Random.rand(300)+300
+   Product.create name: Faker::Lorem.words(Random.rand(3) + 1).join(' ').titleize,
+   description: Faker::Lorem.paragraphs(3, true).join(' '),
+   photo: "https://placekitten.com/#{random_size}/#{random_size}",
+  
+   category_id: Category.order("RANDOM()").first
+   list_id: List.order("RANDOM()").first
+   user_id: User.order("RANDOM()").first
+   timeservice_id: Timeservice.order("RANDOM()").first
+   description_extra_time: Faker::Lorem.paragraphs(1, true).join(' '),
+   base_price: rand(5000..70000)
+   max_extra_kid: rand(0..20)
+   cost_extra_kid: rand(1000..1000)
+   maxcapacity_id: rand(2..40)
+end
 
-# end
-
-
-
+Comunne.delete_all
 
 comunne = [
   
@@ -34,6 +41,8 @@ timeservice = [
 ]
 timeservice.map{|b| Timeservice.create(name: b.first)} 
 
+Maxcapacity.delete_all
+
 maxcapacity = [
 
 ['1 niño'], ['2 niños'], ['3 niños'], ['4 niños'], ['5 niños'], ['6 niños'], ['7 niños'], ['8 niños'], ['9 niños'], ['10 niños'], ['11 niños'], ['12 niños'], ['13 niños'], ['14 niños'], ['15 niños'], ['16 niños'], ['17 niños'], ['18 niños'], ['19 niños'], ['20 niños'], ['21 niños'], ['22 niños'], ['23 niños'], ['24 niños'], ['25 niños'], ['26 niños'], ['27 niños'], ['28 niños'], ['29 niños'], ['30 niños'], ['31 niños'], ['32 niños'], 
@@ -45,6 +54,8 @@ maxcapacity = [
 
 maxcapacity.map{|b| Maxcapacity.create(name: b.first)} 
 
+Category.delete_all
+
 category = [
 
 ['Arriendos'], ['Animaciones'], ['Show'], ['Actividades'], ['Comida'], ['Decoración'] 
@@ -52,6 +63,8 @@ category = [
 ]
 
 category.map{|b| Category.create(name: b.first)} 
+
+Agerange.delete_all
 
 agerange = [
 

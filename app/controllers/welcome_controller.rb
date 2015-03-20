@@ -5,7 +5,7 @@ class WelcomeController < ApplicationController
     if params[:q].nil?
       @products = Product.all
     else
-      @products = Product.where("name like ?", "%#{params[:q]}%") && Product.where("description like ?", "%#{params[:q]}%")
+      @products = Product.where("name like ?", "%#{params[:q]}%") || Product.where("description like ?", "%#{params[:q]}%")
     end
   end
 
