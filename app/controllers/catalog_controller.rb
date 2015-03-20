@@ -2,7 +2,7 @@ class CatalogController < ApplicationController
   
   #por categoría
   def index
-
+      
      @categories = Category.all
      @comunnes = Comunne.all
      @category_id = params[:category_id]
@@ -15,6 +15,12 @@ class CatalogController < ApplicationController
      end
 
      @products = @products.where(category_id: @category_id) unless @category_id.nil?
+
+    if params[:q].nil?
+      @products = Product.all
+    else
+      @products = Product.where("name like ?", "%#{params[:q]}%") && Product.where("description like ?", "%#{params[:q]}%")
+    end
      
      # @products = @comuna.products 
 
