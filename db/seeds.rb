@@ -13,15 +13,15 @@
    description: Faker::Lorem.paragraphs(3, true).join(' '),
    photo: "https://placekitten.com/#{random_size}/#{random_size}",
   
-   category_id: Category.order("RANDOM()").first
-   list_id: List.order("RANDOM()").first
-   user_id: User.order("RANDOM()").first
-   timeservice_id: Timeservice.order("RANDOM()").first
+   category_id: Category.order("RANDOM()").first,
+   list_id: List.order("RANDOM()").first,
+   user_id: User.order("RANDOM()").first,
+   timeservice_id: Timeservice.order("RANDOM()").first,
    description_extra_time: Faker::Lorem.paragraphs(1, true).join(' '),
-   base_price: rand(5000..70000)
-   max_extra_kid: rand(0..20)
-   cost_extra_kid: rand(1000..1000)
-   maxcapacity_id: rand(2..40)
+   base_price: rand(5000..70000),
+   max_extra_kid: rand(0..20),
+   cost_extra_kid: rand(1000..1000),
+   maxcapacity_id: rand(2..40),
 end
 
 Comunne.delete_all

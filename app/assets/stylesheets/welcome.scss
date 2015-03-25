@@ -48,7 +48,7 @@ h3 {
 
 .contimg{
  
- height: 200px;
+ height: 250px;
  width: 300px;
 
 }
@@ -92,10 +92,12 @@ h3 {
 }
 
 .foto {
-  height: 200px;
+  height: 250px;
   weight: 300px;
   background-position: center; 
-  background-size: 100% auto;
+  background-size: contain;
+  background-repeat: no-repeat;
+
 
 }
 

@@ -4,8 +4,8 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
-    @lists = List.all
+    @products = Product.where(user: current_user)
+    @lists = List.where(user: current_user)
     @additionals = Additional.all
   end
 
@@ -13,7 +13,7 @@ class ProductsController < ApplicationController
   # GET /products/1.json
   def show
     @user = current_user
-    @lists = List.all
+    @lists = List.where(user: current_user)
     @additionals = @product.additionals.all
     # Instancia de un nuevo adicional
     @additional = Additional.new product: @product
