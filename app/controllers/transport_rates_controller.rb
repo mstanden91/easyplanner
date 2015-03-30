@@ -25,10 +25,10 @@ class TransportRatesController < ApplicationController
   # POST /transport_rates
   # POST /transport_rates.json
   def create
-    @transport_rate = TransportRate.new(transport_rate_params)
-    @list = List.find(params[:list_id])
-    @transport_rate.list = @list
-    @transport_rate.save
+      @transport_rate = TransportRate.new(transport_rate_params)
+      @list = List.find(params[:list_id])
+      @transport_rate.list = @list
+      @transport_rate.save
     redirect_to user_list_url(current_user, @list)
  end
 
