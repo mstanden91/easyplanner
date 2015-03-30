@@ -12,8 +12,8 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
-    @user = current_user
-    @lists = List.where(user: current_user)
+    @user = current_provider
+    @lists = List.where(user: current_provider)
     @additionals = @product.additionals.all
     # Instancia de un nuevo adicional
     @additional = Additional.new product: @product

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :providers
   get 'share/navbar'
 
   #get 'catalog/index'
